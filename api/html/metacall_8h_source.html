@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">MetaCall
-   &#160;<span id="projectnumber">0.1.0.9bcc4c97acac</span>
+   &#160;<span id="projectnumber">0.1.0.50b1ed9f169d</span>
    </div>
    <div id="projectbrief">A library for providing inter-language foreign function interface calls</div>
   </td>
@@ -1130,13 +1130,13 @@ $(document).ready(function(){initNavTree('metacall_8h_source.html',''); initResi
 <div class="line"><a name="l01040"></a><span class="lineno"> 1040</span>&#160;<span class="comment"></span> </div>
 <div class="line"><a name="l01041"></a><span class="lineno"> 1041</span>&#160;<span class="comment">/**</span></div>
 <div class="line"><a name="l01042"></a><span class="lineno"> 1042</span>&#160;<span class="comment">*  @brief</span></div>
-<div class="line"><a name="l01043"></a><span class="lineno"> 1043</span>&#160;<span class="comment">*    Call a class method anonymously by value array @args</span></div>
+<div class="line"><a name="l01043"></a><span class="lineno"> 1043</span>&#160;<span class="comment">*    Call a class method anonymously by value array @args (this procedure assumes there&#39;s no overloaded methods and does type conversion on values)</span></div>
 <div class="line"><a name="l01044"></a><span class="lineno"> 1044</span>&#160;<span class="comment">*</span></div>
-<div class="line"><a name="l01045"></a><span class="lineno"> 1045</span>&#160;<span class="comment">*  @param[in] name</span></div>
-<div class="line"><a name="l01046"></a><span class="lineno"> 1046</span>&#160;<span class="comment">*    Name of the method</span></div>
+<div class="line"><a name="l01045"></a><span class="lineno"> 1045</span>&#160;<span class="comment">*  @param[in] cls</span></div>
+<div class="line"><a name="l01046"></a><span class="lineno"> 1046</span>&#160;<span class="comment">*    Pointer to the class</span></div>
 <div class="line"><a name="l01047"></a><span class="lineno"> 1047</span>&#160;<span class="comment">*</span></div>
-<div class="line"><a name="l01048"></a><span class="lineno"> 1048</span>&#160;<span class="comment">*  @param[in] cls</span></div>
-<div class="line"><a name="l01049"></a><span class="lineno"> 1049</span>&#160;<span class="comment">*    Pointer to the class</span></div>
+<div class="line"><a name="l01048"></a><span class="lineno"> 1048</span>&#160;<span class="comment">*  @param[in] name</span></div>
+<div class="line"><a name="l01049"></a><span class="lineno"> 1049</span>&#160;<span class="comment">*    Name of the method</span></div>
 <div class="line"><a name="l01050"></a><span class="lineno"> 1050</span>&#160;<span class="comment">*</span></div>
 <div class="line"><a name="l01051"></a><span class="lineno"> 1051</span>&#160;<span class="comment">*  @param[in] args</span></div>
 <div class="line"><a name="l01052"></a><span class="lineno"> 1052</span>&#160;<span class="comment">*    Array of pointers to data</span></div>
@@ -1147,214 +1147,263 @@ $(document).ready(function(){initNavTree('metacall_8h_source.html',''); initResi
 <div class="line"><a name="l01057"></a><span class="lineno"> 1057</span>&#160;<span class="comment">*  @return</span></div>
 <div class="line"><a name="l01058"></a><span class="lineno"> 1058</span>&#160;<span class="comment">*    Pointer to value containing the result of the call</span></div>
 <div class="line"><a name="l01059"></a><span class="lineno"> 1059</span>&#160;<span class="comment">*/</span></div>
-<div class="line"><a name="l01060"></a><span class="lineno"> 1060</span>&#160;METACALL_API <span class="keywordtype">void</span> *<a class="code" href="metacall_8h.html#a9a59bb8134aa3243a995d871262f5085">metacallv_class</a>(<span class="keywordtype">void</span> *cls, <span class="keyword">const</span> <span class="keywordtype">char</span> *name, <span class="keywordtype">void</span> *args[], <span class="keywordtype">size_t</span> argc);</div>
+<div class="line"><a name="l01060"></a><span class="lineno"> 1060</span>&#160;METACALL_API <span class="keywordtype">void</span> *<a class="code" href="metacall_8h.html#a97f50d305c683edfbeec022d41d8b749">metacallv_class</a>(<span class="keywordtype">void</span> *cls, <span class="keyword">const</span> <span class="keywordtype">char</span> *name, <span class="keywordtype">void</span> *args[], <span class="keywordtype">size_t</span> size);</div>
 <div class="line"><a name="l01061"></a><span class="lineno"> 1061</span>&#160;<span class="comment"></span> </div>
 <div class="line"><a name="l01062"></a><span class="lineno"> 1062</span>&#160;<span class="comment">/**</span></div>
 <div class="line"><a name="l01063"></a><span class="lineno"> 1063</span>&#160;<span class="comment">*  @brief</span></div>
-<div class="line"><a name="l01064"></a><span class="lineno"> 1064</span>&#160;<span class="comment">*    Create a new object instance from @cls by value array @args</span></div>
+<div class="line"><a name="l01064"></a><span class="lineno"> 1064</span>&#160;<span class="comment">*    Call a class method anonymously by value array @args and return value type @ret (helps to resolve overloading methods)</span></div>
 <div class="line"><a name="l01065"></a><span class="lineno"> 1065</span>&#160;<span class="comment">*</span></div>
 <div class="line"><a name="l01066"></a><span class="lineno"> 1066</span>&#160;<span class="comment">*  @param[in] cls</span></div>
 <div class="line"><a name="l01067"></a><span class="lineno"> 1067</span>&#160;<span class="comment">*    Pointer to the class</span></div>
 <div class="line"><a name="l01068"></a><span class="lineno"> 1068</span>&#160;<span class="comment">*</span></div>
 <div class="line"><a name="l01069"></a><span class="lineno"> 1069</span>&#160;<span class="comment">*  @param[in] name</span></div>
-<div class="line"><a name="l01070"></a><span class="lineno"> 1070</span>&#160;<span class="comment">*    Name of the new object</span></div>
+<div class="line"><a name="l01070"></a><span class="lineno"> 1070</span>&#160;<span class="comment">*    Name of the method</span></div>
 <div class="line"><a name="l01071"></a><span class="lineno"> 1071</span>&#160;<span class="comment">*</span></div>
-<div class="line"><a name="l01072"></a><span class="lineno"> 1072</span>&#160;<span class="comment">*  @param[in] args</span></div>
-<div class="line"><a name="l01073"></a><span class="lineno"> 1073</span>&#160;<span class="comment">*    Array of pointers constructor parameters</span></div>
+<div class="line"><a name="l01072"></a><span class="lineno"> 1072</span>&#160;<span class="comment">*  @param[in] ret</span></div>
+<div class="line"><a name="l01073"></a><span class="lineno"> 1073</span>&#160;<span class="comment">*    Type of the return value of the method</span></div>
 <div class="line"><a name="l01074"></a><span class="lineno"> 1074</span>&#160;<span class="comment">*</span></div>
-<div class="line"><a name="l01075"></a><span class="lineno"> 1075</span>&#160;<span class="comment">*  @param[in] size</span></div>
-<div class="line"><a name="l01076"></a><span class="lineno"> 1076</span>&#160;<span class="comment">*    Number of elements of constructor parameters</span></div>
+<div class="line"><a name="l01075"></a><span class="lineno"> 1075</span>&#160;<span class="comment">*  @param[in] args</span></div>
+<div class="line"><a name="l01076"></a><span class="lineno"> 1076</span>&#160;<span class="comment">*    Array of pointers to data</span></div>
 <div class="line"><a name="l01077"></a><span class="lineno"> 1077</span>&#160;<span class="comment">*</span></div>
-<div class="line"><a name="l01078"></a><span class="lineno"> 1078</span>&#160;<span class="comment">*  @return</span></div>
-<div class="line"><a name="l01079"></a><span class="lineno"> 1079</span>&#160;<span class="comment">*    Pointer to the new object value instance</span></div>
-<div class="line"><a name="l01080"></a><span class="lineno"> 1080</span>&#160;<span class="comment">*/</span></div>
-<div class="line"><a name="l01081"></a><span class="lineno"> 1081</span>&#160;METACALL_API <span class="keywordtype">void</span> *<a class="code" href="metacall_8h.html#a3fb7a043355dd7fd9974cea54ff93814">metacall_class_new</a>(<span class="keywordtype">void</span> *cls, <span class="keyword">const</span> <span class="keywordtype">char</span> *name, <span class="keywordtype">void</span> *args[], <span class="keywordtype">size_t</span> argc);</div>
-<div class="line"><a name="l01082"></a><span class="lineno"> 1082</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l01083"></a><span class="lineno"> 1083</span>&#160;<span class="comment">/**</span></div>
-<div class="line"><a name="l01084"></a><span class="lineno"> 1084</span>&#160;<span class="comment">*  @brief</span></div>
-<div class="line"><a name="l01085"></a><span class="lineno"> 1085</span>&#160;<span class="comment">*    Get an attribute from @cls by @key name</span></div>
-<div class="line"><a name="l01086"></a><span class="lineno"> 1086</span>&#160;<span class="comment">*</span></div>
-<div class="line"><a name="l01087"></a><span class="lineno"> 1087</span>&#160;<span class="comment">*  @param[in] cls</span></div>
-<div class="line"><a name="l01088"></a><span class="lineno"> 1088</span>&#160;<span class="comment">*    Pointer to the class</span></div>
+<div class="line"><a name="l01078"></a><span class="lineno"> 1078</span>&#160;<span class="comment">*  @param[in] size</span></div>
+<div class="line"><a name="l01079"></a><span class="lineno"> 1079</span>&#160;<span class="comment">*    Number of elements of args array</span></div>
+<div class="line"><a name="l01080"></a><span class="lineno"> 1080</span>&#160;<span class="comment">*</span></div>
+<div class="line"><a name="l01081"></a><span class="lineno"> 1081</span>&#160;<span class="comment">*  @return</span></div>
+<div class="line"><a name="l01082"></a><span class="lineno"> 1082</span>&#160;<span class="comment">*    Pointer to value containing the result of the call</span></div>
+<div class="line"><a name="l01083"></a><span class="lineno"> 1083</span>&#160;<span class="comment">*/</span></div>
+<div class="line"><a name="l01084"></a><span class="lineno"> 1084</span>&#160;METACALL_API <span class="keywordtype">void</span> *<a class="code" href="metacall_8h.html#ac0e15e8ca121a9b0c5b1f22f760d7137">metacallt_class</a>(<span class="keywordtype">void</span> *cls, <span class="keyword">const</span> <span class="keywordtype">char</span> *name, <span class="keyword">const</span> <span class="keyword">enum</span> <a class="code" href="metacall__value_8h.html#a09df370b94fa034a58dc8048e14ed34d">metacall_value_id</a> ret, <span class="keywordtype">void</span> *args[], <span class="keywordtype">size_t</span> size);</div>
+<div class="line"><a name="l01085"></a><span class="lineno"> 1085</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l01086"></a><span class="lineno"> 1086</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l01087"></a><span class="lineno"> 1087</span>&#160;<span class="comment">*  @brief</span></div>
+<div class="line"><a name="l01088"></a><span class="lineno"> 1088</span>&#160;<span class="comment">*    Create a new object instance from @cls by value array @args</span></div>
 <div class="line"><a name="l01089"></a><span class="lineno"> 1089</span>&#160;<span class="comment">*</span></div>
-<div class="line"><a name="l01090"></a><span class="lineno"> 1090</span>&#160;<span class="comment">*  @param[in] key</span></div>
-<div class="line"><a name="l01091"></a><span class="lineno"> 1091</span>&#160;<span class="comment">*    Name of the attribute to get</span></div>
+<div class="line"><a name="l01090"></a><span class="lineno"> 1090</span>&#160;<span class="comment">*  @param[in] cls</span></div>
+<div class="line"><a name="l01091"></a><span class="lineno"> 1091</span>&#160;<span class="comment">*    Pointer to the class</span></div>
 <div class="line"><a name="l01092"></a><span class="lineno"> 1092</span>&#160;<span class="comment">*</span></div>
-<div class="line"><a name="l01093"></a><span class="lineno"> 1093</span>&#160;<span class="comment">*  @return</span></div>
-<div class="line"><a name="l01094"></a><span class="lineno"> 1094</span>&#160;<span class="comment">*    Pointer to the class attribute value or NULL if an error occurred</span></div>
-<div class="line"><a name="l01095"></a><span class="lineno"> 1095</span>&#160;<span class="comment">*/</span></div>
-<div class="line"><a name="l01096"></a><span class="lineno"> 1096</span>&#160;METACALL_API <span class="keywordtype">void</span> *<a class="code" href="metacall_8h.html#a70337e2f826dab637d640337404831cf">metacall_class_static_get</a>(<span class="keywordtype">void</span> *cls, <span class="keyword">const</span> <span class="keywordtype">char</span> *key);</div>
-<div class="line"><a name="l01097"></a><span class="lineno"> 1097</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l01098"></a><span class="lineno"> 1098</span>&#160;<span class="comment">/**</span></div>
-<div class="line"><a name="l01099"></a><span class="lineno"> 1099</span>&#160;<span class="comment">*  @brief</span></div>
-<div class="line"><a name="l01100"></a><span class="lineno"> 1100</span>&#160;<span class="comment">*    Set an attribute to @cls by @key name</span></div>
+<div class="line"><a name="l01093"></a><span class="lineno"> 1093</span>&#160;<span class="comment">*  @param[in] name</span></div>
+<div class="line"><a name="l01094"></a><span class="lineno"> 1094</span>&#160;<span class="comment">*    Name of the new object</span></div>
+<div class="line"><a name="l01095"></a><span class="lineno"> 1095</span>&#160;<span class="comment">*</span></div>
+<div class="line"><a name="l01096"></a><span class="lineno"> 1096</span>&#160;<span class="comment">*  @param[in] args</span></div>
+<div class="line"><a name="l01097"></a><span class="lineno"> 1097</span>&#160;<span class="comment">*    Array of pointers constructor parameters</span></div>
+<div class="line"><a name="l01098"></a><span class="lineno"> 1098</span>&#160;<span class="comment">*</span></div>
+<div class="line"><a name="l01099"></a><span class="lineno"> 1099</span>&#160;<span class="comment">*  @param[in] size</span></div>
+<div class="line"><a name="l01100"></a><span class="lineno"> 1100</span>&#160;<span class="comment">*    Number of elements of constructor parameters</span></div>
 <div class="line"><a name="l01101"></a><span class="lineno"> 1101</span>&#160;<span class="comment">*</span></div>
-<div class="line"><a name="l01102"></a><span class="lineno"> 1102</span>&#160;<span class="comment">*  @param[in] cls</span></div>
-<div class="line"><a name="l01103"></a><span class="lineno"> 1103</span>&#160;<span class="comment">*    Pointer to the class</span></div>
-<div class="line"><a name="l01104"></a><span class="lineno"> 1104</span>&#160;<span class="comment">*</span></div>
-<div class="line"><a name="l01105"></a><span class="lineno"> 1105</span>&#160;<span class="comment">*  @param[in] key</span></div>
-<div class="line"><a name="l01106"></a><span class="lineno"> 1106</span>&#160;<span class="comment">*    Name of the attribute to set</span></div>
-<div class="line"><a name="l01107"></a><span class="lineno"> 1107</span>&#160;<span class="comment">*</span></div>
-<div class="line"><a name="l01108"></a><span class="lineno"> 1108</span>&#160;<span class="comment">*  @param[in] value</span></div>
-<div class="line"><a name="l01109"></a><span class="lineno"> 1109</span>&#160;<span class="comment">*    Value to set</span></div>
+<div class="line"><a name="l01102"></a><span class="lineno"> 1102</span>&#160;<span class="comment">*  @return</span></div>
+<div class="line"><a name="l01103"></a><span class="lineno"> 1103</span>&#160;<span class="comment">*    Pointer to the new object value instance</span></div>
+<div class="line"><a name="l01104"></a><span class="lineno"> 1104</span>&#160;<span class="comment">*/</span></div>
+<div class="line"><a name="l01105"></a><span class="lineno"> 1105</span>&#160;METACALL_API <span class="keywordtype">void</span> *<a class="code" href="metacall_8h.html#aee922f6a17e2d304c8074342779205c1">metacall_class_new</a>(<span class="keywordtype">void</span> *cls, <span class="keyword">const</span> <span class="keywordtype">char</span> *name, <span class="keywordtype">void</span> *args[], <span class="keywordtype">size_t</span> size);</div>
+<div class="line"><a name="l01106"></a><span class="lineno"> 1106</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l01107"></a><span class="lineno"> 1107</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l01108"></a><span class="lineno"> 1108</span>&#160;<span class="comment">*  @brief</span></div>
+<div class="line"><a name="l01109"></a><span class="lineno"> 1109</span>&#160;<span class="comment">*    Get an attribute from @cls by @key name</span></div>
 <div class="line"><a name="l01110"></a><span class="lineno"> 1110</span>&#160;<span class="comment">*</span></div>
-<div class="line"><a name="l01111"></a><span class="lineno"> 1111</span>&#160;<span class="comment">*  @return</span></div>
-<div class="line"><a name="l01112"></a><span class="lineno"> 1112</span>&#160;<span class="comment">*    Non-zero integer if an error ocurred</span></div>
-<div class="line"><a name="l01113"></a><span class="lineno"> 1113</span>&#160;<span class="comment">*/</span></div>
-<div class="line"><a name="l01114"></a><span class="lineno"> 1114</span>&#160;METACALL_API <span class="keywordtype">int</span> <a class="code" href="metacall_8h.html#ad69032d3eec3834b36d907141f32332a">metacall_class_static_set</a>(<span class="keywordtype">void</span> *cls, <span class="keyword">const</span> <span class="keywordtype">char</span> *key, <span class="keywordtype">void</span> *v);</div>
-<div class="line"><a name="l01115"></a><span class="lineno"> 1115</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l01116"></a><span class="lineno"> 1116</span>&#160;<span class="comment">/**</span></div>
-<div class="line"><a name="l01117"></a><span class="lineno"> 1117</span>&#160;<span class="comment">*  @brief</span></div>
-<div class="line"><a name="l01118"></a><span class="lineno"> 1118</span>&#160;<span class="comment">*    Call an object method anonymously by value array @args</span></div>
-<div class="line"><a name="l01119"></a><span class="lineno"> 1119</span>&#160;<span class="comment">*</span></div>
-<div class="line"><a name="l01120"></a><span class="lineno"> 1120</span>&#160;<span class="comment">*  @param[in] obj</span></div>
-<div class="line"><a name="l01121"></a><span class="lineno"> 1121</span>&#160;<span class="comment">*    Pointer to the object</span></div>
-<div class="line"><a name="l01122"></a><span class="lineno"> 1122</span>&#160;<span class="comment">*</span></div>
-<div class="line"><a name="l01123"></a><span class="lineno"> 1123</span>&#160;<span class="comment">*  @param[in] name</span></div>
-<div class="line"><a name="l01124"></a><span class="lineno"> 1124</span>&#160;<span class="comment">*    Name of the method</span></div>
+<div class="line"><a name="l01111"></a><span class="lineno"> 1111</span>&#160;<span class="comment">*  @param[in] cls</span></div>
+<div class="line"><a name="l01112"></a><span class="lineno"> 1112</span>&#160;<span class="comment">*    Pointer to the class</span></div>
+<div class="line"><a name="l01113"></a><span class="lineno"> 1113</span>&#160;<span class="comment">*</span></div>
+<div class="line"><a name="l01114"></a><span class="lineno"> 1114</span>&#160;<span class="comment">*  @param[in] key</span></div>
+<div class="line"><a name="l01115"></a><span class="lineno"> 1115</span>&#160;<span class="comment">*    Name of the attribute to get</span></div>
+<div class="line"><a name="l01116"></a><span class="lineno"> 1116</span>&#160;<span class="comment">*</span></div>
+<div class="line"><a name="l01117"></a><span class="lineno"> 1117</span>&#160;<span class="comment">*  @return</span></div>
+<div class="line"><a name="l01118"></a><span class="lineno"> 1118</span>&#160;<span class="comment">*    Pointer to the class attribute value or NULL if an error occurred</span></div>
+<div class="line"><a name="l01119"></a><span class="lineno"> 1119</span>&#160;<span class="comment">*/</span></div>
+<div class="line"><a name="l01120"></a><span class="lineno"> 1120</span>&#160;METACALL_API <span class="keywordtype">void</span> *<a class="code" href="metacall_8h.html#a70337e2f826dab637d640337404831cf">metacall_class_static_get</a>(<span class="keywordtype">void</span> *cls, <span class="keyword">const</span> <span class="keywordtype">char</span> *key);</div>
+<div class="line"><a name="l01121"></a><span class="lineno"> 1121</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l01122"></a><span class="lineno"> 1122</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l01123"></a><span class="lineno"> 1123</span>&#160;<span class="comment">*  @brief</span></div>
+<div class="line"><a name="l01124"></a><span class="lineno"> 1124</span>&#160;<span class="comment">*    Set an attribute to @cls by @key name</span></div>
 <div class="line"><a name="l01125"></a><span class="lineno"> 1125</span>&#160;<span class="comment">*</span></div>
-<div class="line"><a name="l01126"></a><span class="lineno"> 1126</span>&#160;<span class="comment">*  @param[in] args</span></div>
-<div class="line"><a name="l01127"></a><span class="lineno"> 1127</span>&#160;<span class="comment">*    Array of pointers to data</span></div>
+<div class="line"><a name="l01126"></a><span class="lineno"> 1126</span>&#160;<span class="comment">*  @param[in] cls</span></div>
+<div class="line"><a name="l01127"></a><span class="lineno"> 1127</span>&#160;<span class="comment">*    Pointer to the class</span></div>
 <div class="line"><a name="l01128"></a><span class="lineno"> 1128</span>&#160;<span class="comment">*</span></div>
-<div class="line"><a name="l01129"></a><span class="lineno"> 1129</span>&#160;<span class="comment">*  @param[in] size</span></div>
-<div class="line"><a name="l01130"></a><span class="lineno"> 1130</span>&#160;<span class="comment">*    Number of elements of args array</span></div>
+<div class="line"><a name="l01129"></a><span class="lineno"> 1129</span>&#160;<span class="comment">*  @param[in] key</span></div>
+<div class="line"><a name="l01130"></a><span class="lineno"> 1130</span>&#160;<span class="comment">*    Name of the attribute to set</span></div>
 <div class="line"><a name="l01131"></a><span class="lineno"> 1131</span>&#160;<span class="comment">*</span></div>
-<div class="line"><a name="l01132"></a><span class="lineno"> 1132</span>&#160;<span class="comment">*  @return</span></div>
-<div class="line"><a name="l01133"></a><span class="lineno"> 1133</span>&#160;<span class="comment">*    Pointer to value containing the result of the call</span></div>
-<div class="line"><a name="l01134"></a><span class="lineno"> 1134</span>&#160;<span class="comment">*/</span></div>
-<div class="line"><a name="l01135"></a><span class="lineno"> 1135</span>&#160;METACALL_API <span class="keywordtype">void</span> *<a class="code" href="metacall_8h.html#a84679047389d04a406f1e3a91fa00e1d">metacallv_object</a>(<span class="keywordtype">void</span> *obj, <span class="keyword">const</span> <span class="keywordtype">char</span> *name, <span class="keywordtype">void</span> *args[], <span class="keywordtype">size_t</span> argc);</div>
-<div class="line"><a name="l01136"></a><span class="lineno"> 1136</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l01137"></a><span class="lineno"> 1137</span>&#160;<span class="comment">/**</span></div>
-<div class="line"><a name="l01138"></a><span class="lineno"> 1138</span>&#160;<span class="comment">*  @brief</span></div>
-<div class="line"><a name="l01139"></a><span class="lineno"> 1139</span>&#160;<span class="comment">*    Get an attribute from @obj by @key name</span></div>
-<div class="line"><a name="l01140"></a><span class="lineno"> 1140</span>&#160;<span class="comment">*</span></div>
-<div class="line"><a name="l01141"></a><span class="lineno"> 1141</span>&#160;<span class="comment">*  @param[in] obj</span></div>
-<div class="line"><a name="l01142"></a><span class="lineno"> 1142</span>&#160;<span class="comment">*    Pointer to the object</span></div>
+<div class="line"><a name="l01132"></a><span class="lineno"> 1132</span>&#160;<span class="comment">*  @param[in] value</span></div>
+<div class="line"><a name="l01133"></a><span class="lineno"> 1133</span>&#160;<span class="comment">*    Value to set</span></div>
+<div class="line"><a name="l01134"></a><span class="lineno"> 1134</span>&#160;<span class="comment">*</span></div>
+<div class="line"><a name="l01135"></a><span class="lineno"> 1135</span>&#160;<span class="comment">*  @return</span></div>
+<div class="line"><a name="l01136"></a><span class="lineno"> 1136</span>&#160;<span class="comment">*    Non-zero integer if an error ocurred</span></div>
+<div class="line"><a name="l01137"></a><span class="lineno"> 1137</span>&#160;<span class="comment">*/</span></div>
+<div class="line"><a name="l01138"></a><span class="lineno"> 1138</span>&#160;METACALL_API <span class="keywordtype">int</span> <a class="code" href="metacall_8h.html#ad69032d3eec3834b36d907141f32332a">metacall_class_static_set</a>(<span class="keywordtype">void</span> *cls, <span class="keyword">const</span> <span class="keywordtype">char</span> *key, <span class="keywordtype">void</span> *v);</div>
+<div class="line"><a name="l01139"></a><span class="lineno"> 1139</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l01140"></a><span class="lineno"> 1140</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l01141"></a><span class="lineno"> 1141</span>&#160;<span class="comment">*  @brief</span></div>
+<div class="line"><a name="l01142"></a><span class="lineno"> 1142</span>&#160;<span class="comment">*    Call an object method anonymously by value array @args</span></div>
 <div class="line"><a name="l01143"></a><span class="lineno"> 1143</span>&#160;<span class="comment">*</span></div>
-<div class="line"><a name="l01144"></a><span class="lineno"> 1144</span>&#160;<span class="comment">*  @param[in] key</span></div>
-<div class="line"><a name="l01145"></a><span class="lineno"> 1145</span>&#160;<span class="comment">*    Name of the attribute to get</span></div>
+<div class="line"><a name="l01144"></a><span class="lineno"> 1144</span>&#160;<span class="comment">*  @param[in] obj</span></div>
+<div class="line"><a name="l01145"></a><span class="lineno"> 1145</span>&#160;<span class="comment">*    Pointer to the object</span></div>
 <div class="line"><a name="l01146"></a><span class="lineno"> 1146</span>&#160;<span class="comment">*</span></div>
-<div class="line"><a name="l01147"></a><span class="lineno"> 1147</span>&#160;<span class="comment">*  @return</span></div>
-<div class="line"><a name="l01148"></a><span class="lineno"> 1148</span>&#160;<span class="comment">*    Pointer to the object attribute value or NULL if an error occurred</span></div>
-<div class="line"><a name="l01149"></a><span class="lineno"> 1149</span>&#160;<span class="comment">*/</span></div>
-<div class="line"><a name="l01150"></a><span class="lineno"> 1150</span>&#160;METACALL_API <span class="keywordtype">void</span> *<a class="code" href="metacall_8h.html#abf765af19df6abca9ef981ed56db6b92">metacall_object_get</a>(<span class="keywordtype">void</span> *obj, <span class="keyword">const</span> <span class="keywordtype">char</span> *key);</div>
-<div class="line"><a name="l01151"></a><span class="lineno"> 1151</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l01152"></a><span class="lineno"> 1152</span>&#160;<span class="comment">/**</span></div>
-<div class="line"><a name="l01153"></a><span class="lineno"> 1153</span>&#160;<span class="comment">*  @brief</span></div>
-<div class="line"><a name="l01154"></a><span class="lineno"> 1154</span>&#160;<span class="comment">*    Set an attribute to @obj by @key name</span></div>
+<div class="line"><a name="l01147"></a><span class="lineno"> 1147</span>&#160;<span class="comment">*  @param[in] name</span></div>
+<div class="line"><a name="l01148"></a><span class="lineno"> 1148</span>&#160;<span class="comment">*    Name of the method</span></div>
+<div class="line"><a name="l01149"></a><span class="lineno"> 1149</span>&#160;<span class="comment">*</span></div>
+<div class="line"><a name="l01150"></a><span class="lineno"> 1150</span>&#160;<span class="comment">*  @param[in] args</span></div>
+<div class="line"><a name="l01151"></a><span class="lineno"> 1151</span>&#160;<span class="comment">*    Array of pointers to data</span></div>
+<div class="line"><a name="l01152"></a><span class="lineno"> 1152</span>&#160;<span class="comment">*</span></div>
+<div class="line"><a name="l01153"></a><span class="lineno"> 1153</span>&#160;<span class="comment">*  @param[in] size</span></div>
+<div class="line"><a name="l01154"></a><span class="lineno"> 1154</span>&#160;<span class="comment">*    Number of elements of args array</span></div>
 <div class="line"><a name="l01155"></a><span class="lineno"> 1155</span>&#160;<span class="comment">*</span></div>
-<div class="line"><a name="l01156"></a><span class="lineno"> 1156</span>&#160;<span class="comment">*  @param[in] obj</span></div>
-<div class="line"><a name="l01157"></a><span class="lineno"> 1157</span>&#160;<span class="comment">*    Pointer to the object</span></div>
-<div class="line"><a name="l01158"></a><span class="lineno"> 1158</span>&#160;<span class="comment">*</span></div>
-<div class="line"><a name="l01159"></a><span class="lineno"> 1159</span>&#160;<span class="comment">*  @param[in] key</span></div>
-<div class="line"><a name="l01160"></a><span class="lineno"> 1160</span>&#160;<span class="comment">*    Name of the attribute to set</span></div>
-<div class="line"><a name="l01161"></a><span class="lineno"> 1161</span>&#160;<span class="comment">*</span></div>
-<div class="line"><a name="l01162"></a><span class="lineno"> 1162</span>&#160;<span class="comment">*  @param[in] value</span></div>
-<div class="line"><a name="l01163"></a><span class="lineno"> 1163</span>&#160;<span class="comment">*    Value to set</span></div>
+<div class="line"><a name="l01156"></a><span class="lineno"> 1156</span>&#160;<span class="comment">*  @return</span></div>
+<div class="line"><a name="l01157"></a><span class="lineno"> 1157</span>&#160;<span class="comment">*    Pointer to value containing the result of the call</span></div>
+<div class="line"><a name="l01158"></a><span class="lineno"> 1158</span>&#160;<span class="comment">*/</span></div>
+<div class="line"><a name="l01159"></a><span class="lineno"> 1159</span>&#160;METACALL_API <span class="keywordtype">void</span> *<a class="code" href="metacall_8h.html#a1b346165cc3e9d4c958bf92c65f71ef5">metacallv_object</a>(<span class="keywordtype">void</span> *obj, <span class="keyword">const</span> <span class="keywordtype">char</span> *name, <span class="keywordtype">void</span> *args[], <span class="keywordtype">size_t</span> size);</div>
+<div class="line"><a name="l01160"></a><span class="lineno"> 1160</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l01161"></a><span class="lineno"> 1161</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l01162"></a><span class="lineno"> 1162</span>&#160;<span class="comment">*  @brief</span></div>
+<div class="line"><a name="l01163"></a><span class="lineno"> 1163</span>&#160;<span class="comment">*    Call a object method anonymously by value array @args and return value type @ret (helps to resolve overloading methods)</span></div>
 <div class="line"><a name="l01164"></a><span class="lineno"> 1164</span>&#160;<span class="comment">*</span></div>
-<div class="line"><a name="l01165"></a><span class="lineno"> 1165</span>&#160;<span class="comment">*  @return</span></div>
-<div class="line"><a name="l01166"></a><span class="lineno"> 1166</span>&#160;<span class="comment">*    Non-zero integer if an error ocurred</span></div>
-<div class="line"><a name="l01167"></a><span class="lineno"> 1167</span>&#160;<span class="comment">*/</span></div>
-<div class="line"><a name="l01168"></a><span class="lineno"> 1168</span>&#160;METACALL_API <span class="keywordtype">int</span> <a class="code" href="metacall_8h.html#a567cbdd3c398e4bcfab8e07ff76de06b">metacall_object_set</a>(<span class="keywordtype">void</span> *obj, <span class="keyword">const</span> <span class="keywordtype">char</span> *key, <span class="keywordtype">void</span> *v);</div>
-<div class="line"><a name="l01169"></a><span class="lineno"> 1169</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l01170"></a><span class="lineno"> 1170</span>&#160;<span class="comment">/**</span></div>
-<div class="line"><a name="l01171"></a><span class="lineno"> 1171</span>&#160;<span class="comment">*  @brief</span></div>
-<div class="line"><a name="l01172"></a><span class="lineno"> 1172</span>&#160;<span class="comment">*    Provide information about all loaded objects</span></div>
+<div class="line"><a name="l01165"></a><span class="lineno"> 1165</span>&#160;<span class="comment">*  @param[in] obj</span></div>
+<div class="line"><a name="l01166"></a><span class="lineno"> 1166</span>&#160;<span class="comment">*    Pointer to the object</span></div>
+<div class="line"><a name="l01167"></a><span class="lineno"> 1167</span>&#160;<span class="comment">*</span></div>
+<div class="line"><a name="l01168"></a><span class="lineno"> 1168</span>&#160;<span class="comment">*  @param[in] name</span></div>
+<div class="line"><a name="l01169"></a><span class="lineno"> 1169</span>&#160;<span class="comment">*    Name of the method</span></div>
+<div class="line"><a name="l01170"></a><span class="lineno"> 1170</span>&#160;<span class="comment">*</span></div>
+<div class="line"><a name="l01171"></a><span class="lineno"> 1171</span>&#160;<span class="comment">*  @param[in] ret</span></div>
+<div class="line"><a name="l01172"></a><span class="lineno"> 1172</span>&#160;<span class="comment">*    Type of the return value of the method</span></div>
 <div class="line"><a name="l01173"></a><span class="lineno"> 1173</span>&#160;<span class="comment">*</span></div>
-<div class="line"><a name="l01174"></a><span class="lineno"> 1174</span>&#160;<span class="comment">*  @param[out] size</span></div>
-<div class="line"><a name="l01175"></a><span class="lineno"> 1175</span>&#160;<span class="comment">*    Size in bytes of return buffer</span></div>
+<div class="line"><a name="l01174"></a><span class="lineno"> 1174</span>&#160;<span class="comment">*  @param[in] args</span></div>
+<div class="line"><a name="l01175"></a><span class="lineno"> 1175</span>&#160;<span class="comment">*    Array of pointers to data</span></div>
 <div class="line"><a name="l01176"></a><span class="lineno"> 1176</span>&#160;<span class="comment">*</span></div>
-<div class="line"><a name="l01177"></a><span class="lineno"> 1177</span>&#160;<span class="comment">*  @param[in] allocator</span></div>
-<div class="line"><a name="l01178"></a><span class="lineno"> 1178</span>&#160;<span class="comment">*    Pointer to allocator will allocate the string</span></div>
+<div class="line"><a name="l01177"></a><span class="lineno"> 1177</span>&#160;<span class="comment">*  @param[in] size</span></div>
+<div class="line"><a name="l01178"></a><span class="lineno"> 1178</span>&#160;<span class="comment">*    Number of elements of args array</span></div>
 <div class="line"><a name="l01179"></a><span class="lineno"> 1179</span>&#160;<span class="comment">*</span></div>
 <div class="line"><a name="l01180"></a><span class="lineno"> 1180</span>&#160;<span class="comment">*  @return</span></div>
-<div class="line"><a name="l01181"></a><span class="lineno"> 1181</span>&#160;<span class="comment">*    String containing introspection information</span></div>
+<div class="line"><a name="l01181"></a><span class="lineno"> 1181</span>&#160;<span class="comment">*    Pointer to value containing the result of the call</span></div>
 <div class="line"><a name="l01182"></a><span class="lineno"> 1182</span>&#160;<span class="comment">*/</span></div>
-<div class="line"><a name="l01183"></a><span class="lineno"> 1183</span>&#160;METACALL_API <span class="keywordtype">char</span> *<a class="code" href="metacall_8h.html#ab9d6a8fa4d186f14741ef15015798eb0">metacall_inspect</a>(<span class="keywordtype">size_t</span> *size, <span class="keywordtype">void</span> *allocator);</div>
+<div class="line"><a name="l01183"></a><span class="lineno"> 1183</span>&#160;METACALL_API <span class="keywordtype">void</span> *<a class="code" href="metacall_8h.html#a1391d4d2e8f9dc919ecb6ce5ac00916f">metacallt_object</a>(<span class="keywordtype">void</span> *obj, <span class="keyword">const</span> <span class="keywordtype">char</span> *name, <span class="keyword">const</span> <span class="keyword">enum</span> <a class="code" href="metacall__value_8h.html#a09df370b94fa034a58dc8048e14ed34d">metacall_value_id</a> ret, <span class="keywordtype">void</span> *args[], <span class="keywordtype">size_t</span> size);</div>
 <div class="line"><a name="l01184"></a><span class="lineno"> 1184</span>&#160;<span class="comment"></span> </div>
 <div class="line"><a name="l01185"></a><span class="lineno"> 1185</span>&#160;<span class="comment">/**</span></div>
 <div class="line"><a name="l01186"></a><span class="lineno"> 1186</span>&#160;<span class="comment">*  @brief</span></div>
-<div class="line"><a name="l01187"></a><span class="lineno"> 1187</span>&#160;<span class="comment">*    Convert the value @v to serialized string</span></div>
+<div class="line"><a name="l01187"></a><span class="lineno"> 1187</span>&#160;<span class="comment">*    Get an attribute from @obj by @key name</span></div>
 <div class="line"><a name="l01188"></a><span class="lineno"> 1188</span>&#160;<span class="comment">*</span></div>
-<div class="line"><a name="l01189"></a><span class="lineno"> 1189</span>&#160;<span class="comment">*  @param[in] name</span></div>
-<div class="line"><a name="l01190"></a><span class="lineno"> 1190</span>&#160;<span class="comment">*    Name of the serial to be used</span></div>
+<div class="line"><a name="l01189"></a><span class="lineno"> 1189</span>&#160;<span class="comment">*  @param[in] obj</span></div>
+<div class="line"><a name="l01190"></a><span class="lineno"> 1190</span>&#160;<span class="comment">*    Pointer to the object</span></div>
 <div class="line"><a name="l01191"></a><span class="lineno"> 1191</span>&#160;<span class="comment">*</span></div>
-<div class="line"><a name="l01192"></a><span class="lineno"> 1192</span>&#160;<span class="comment">*  @param[in] v</span></div>
-<div class="line"><a name="l01193"></a><span class="lineno"> 1193</span>&#160;<span class="comment">*    Reference to the value</span></div>
+<div class="line"><a name="l01192"></a><span class="lineno"> 1192</span>&#160;<span class="comment">*  @param[in] key</span></div>
+<div class="line"><a name="l01193"></a><span class="lineno"> 1193</span>&#160;<span class="comment">*    Name of the attribute to get</span></div>
 <div class="line"><a name="l01194"></a><span class="lineno"> 1194</span>&#160;<span class="comment">*</span></div>
-<div class="line"><a name="l01195"></a><span class="lineno"> 1195</span>&#160;<span class="comment">*  @param[out] size</span></div>
-<div class="line"><a name="l01196"></a><span class="lineno"> 1196</span>&#160;<span class="comment">*    Size of new allocated string</span></div>
-<div class="line"><a name="l01197"></a><span class="lineno"> 1197</span>&#160;<span class="comment">*</span></div>
-<div class="line"><a name="l01198"></a><span class="lineno"> 1198</span>&#160;<span class="comment">*  @param[in] allocator</span></div>
-<div class="line"><a name="l01199"></a><span class="lineno"> 1199</span>&#160;<span class="comment">*    Pointer to allocator will allocate the string</span></div>
-<div class="line"><a name="l01200"></a><span class="lineno"> 1200</span>&#160;<span class="comment">*</span></div>
-<div class="line"><a name="l01201"></a><span class="lineno"> 1201</span>&#160;<span class="comment">*  @return</span></div>
-<div class="line"><a name="l01202"></a><span class="lineno"> 1202</span>&#160;<span class="comment">*    New allocated string containing stringified value</span></div>
-<div class="line"><a name="l01203"></a><span class="lineno"> 1203</span>&#160;<span class="comment">*/</span></div>
-<div class="line"><a name="l01204"></a><span class="lineno"> 1204</span>&#160;METACALL_API <span class="keywordtype">char</span> *<a class="code" href="metacall_8h.html#acdcbeeeafdc83e9b69937265a0da53c3">metacall_serialize</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *name, <span class="keywordtype">void</span> *v, <span class="keywordtype">size_t</span> *size, <span class="keywordtype">void</span> *allocator);</div>
-<div class="line"><a name="l01205"></a><span class="lineno"> 1205</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l01206"></a><span class="lineno"> 1206</span>&#160;<span class="comment">/**</span></div>
-<div class="line"><a name="l01207"></a><span class="lineno"> 1207</span>&#160;<span class="comment">*  @brief</span></div>
-<div class="line"><a name="l01208"></a><span class="lineno"> 1208</span>&#160;<span class="comment">*    Convert the string @buffer to value</span></div>
+<div class="line"><a name="l01195"></a><span class="lineno"> 1195</span>&#160;<span class="comment">*  @return</span></div>
+<div class="line"><a name="l01196"></a><span class="lineno"> 1196</span>&#160;<span class="comment">*    Pointer to the object attribute value or NULL if an error occurred</span></div>
+<div class="line"><a name="l01197"></a><span class="lineno"> 1197</span>&#160;<span class="comment">*/</span></div>
+<div class="line"><a name="l01198"></a><span class="lineno"> 1198</span>&#160;METACALL_API <span class="keywordtype">void</span> *<a class="code" href="metacall_8h.html#abf765af19df6abca9ef981ed56db6b92">metacall_object_get</a>(<span class="keywordtype">void</span> *obj, <span class="keyword">const</span> <span class="keywordtype">char</span> *key);</div>
+<div class="line"><a name="l01199"></a><span class="lineno"> 1199</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l01200"></a><span class="lineno"> 1200</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l01201"></a><span class="lineno"> 1201</span>&#160;<span class="comment">*  @brief</span></div>
+<div class="line"><a name="l01202"></a><span class="lineno"> 1202</span>&#160;<span class="comment">*    Set an attribute to @obj by @key name</span></div>
+<div class="line"><a name="l01203"></a><span class="lineno"> 1203</span>&#160;<span class="comment">*</span></div>
+<div class="line"><a name="l01204"></a><span class="lineno"> 1204</span>&#160;<span class="comment">*  @param[in] obj</span></div>
+<div class="line"><a name="l01205"></a><span class="lineno"> 1205</span>&#160;<span class="comment">*    Pointer to the object</span></div>
+<div class="line"><a name="l01206"></a><span class="lineno"> 1206</span>&#160;<span class="comment">*</span></div>
+<div class="line"><a name="l01207"></a><span class="lineno"> 1207</span>&#160;<span class="comment">*  @param[in] key</span></div>
+<div class="line"><a name="l01208"></a><span class="lineno"> 1208</span>&#160;<span class="comment">*    Name of the attribute to set</span></div>
 <div class="line"><a name="l01209"></a><span class="lineno"> 1209</span>&#160;<span class="comment">*</span></div>
-<div class="line"><a name="l01210"></a><span class="lineno"> 1210</span>&#160;<span class="comment">*  @param[in] name</span></div>
-<div class="line"><a name="l01211"></a><span class="lineno"> 1211</span>&#160;<span class="comment">*    Name of the serial to be used</span></div>
+<div class="line"><a name="l01210"></a><span class="lineno"> 1210</span>&#160;<span class="comment">*  @param[in] value</span></div>
+<div class="line"><a name="l01211"></a><span class="lineno"> 1211</span>&#160;<span class="comment">*    Value to set</span></div>
 <div class="line"><a name="l01212"></a><span class="lineno"> 1212</span>&#160;<span class="comment">*</span></div>
-<div class="line"><a name="l01213"></a><span class="lineno"> 1213</span>&#160;<span class="comment">*  @param[in] buffer</span></div>
-<div class="line"><a name="l01214"></a><span class="lineno"> 1214</span>&#160;<span class="comment">*    String to be deserialized</span></div>
-<div class="line"><a name="l01215"></a><span class="lineno"> 1215</span>&#160;<span class="comment">*</span></div>
-<div class="line"><a name="l01216"></a><span class="lineno"> 1216</span>&#160;<span class="comment">*  @param[in] size</span></div>
-<div class="line"><a name="l01217"></a><span class="lineno"> 1217</span>&#160;<span class="comment">*    Size of string @buffer</span></div>
-<div class="line"><a name="l01218"></a><span class="lineno"> 1218</span>&#160;<span class="comment">*</span></div>
-<div class="line"><a name="l01219"></a><span class="lineno"> 1219</span>&#160;<span class="comment">*  @param[in] allocator</span></div>
-<div class="line"><a name="l01220"></a><span class="lineno"> 1220</span>&#160;<span class="comment">*    Pointer to allocator will allocate the value</span></div>
+<div class="line"><a name="l01213"></a><span class="lineno"> 1213</span>&#160;<span class="comment">*  @return</span></div>
+<div class="line"><a name="l01214"></a><span class="lineno"> 1214</span>&#160;<span class="comment">*    Non-zero integer if an error ocurred</span></div>
+<div class="line"><a name="l01215"></a><span class="lineno"> 1215</span>&#160;<span class="comment">*/</span></div>
+<div class="line"><a name="l01216"></a><span class="lineno"> 1216</span>&#160;METACALL_API <span class="keywordtype">int</span> <a class="code" href="metacall_8h.html#a567cbdd3c398e4bcfab8e07ff76de06b">metacall_object_set</a>(<span class="keywordtype">void</span> *obj, <span class="keyword">const</span> <span class="keywordtype">char</span> *key, <span class="keywordtype">void</span> *v);</div>
+<div class="line"><a name="l01217"></a><span class="lineno"> 1217</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l01218"></a><span class="lineno"> 1218</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l01219"></a><span class="lineno"> 1219</span>&#160;<span class="comment">*  @brief</span></div>
+<div class="line"><a name="l01220"></a><span class="lineno"> 1220</span>&#160;<span class="comment">*    Provide information about all loaded objects</span></div>
 <div class="line"><a name="l01221"></a><span class="lineno"> 1221</span>&#160;<span class="comment">*</span></div>
-<div class="line"><a name="l01222"></a><span class="lineno"> 1222</span>&#160;<span class="comment">*  @return</span></div>
-<div class="line"><a name="l01223"></a><span class="lineno"> 1223</span>&#160;<span class="comment">*    New allocated value representing the string (must be freed)</span></div>
-<div class="line"><a name="l01224"></a><span class="lineno"> 1224</span>&#160;<span class="comment">*/</span></div>
-<div class="line"><a name="l01225"></a><span class="lineno"> 1225</span>&#160;METACALL_API <span class="keywordtype">void</span> *<a class="code" href="metacall_8h.html#a0d45c99a4491e8bbad9d66aa8e719e54">metacall_deserialize</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *name, <span class="keyword">const</span> <span class="keywordtype">char</span> *buffer, <span class="keywordtype">size_t</span> size, <span class="keywordtype">void</span> *allocator);</div>
-<div class="line"><a name="l01226"></a><span class="lineno"> 1226</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l01227"></a><span class="lineno"> 1227</span>&#160;<span class="comment">/**</span></div>
-<div class="line"><a name="l01228"></a><span class="lineno"> 1228</span>&#160;<span class="comment">*  @brief</span></div>
-<div class="line"><a name="l01229"></a><span class="lineno"> 1229</span>&#160;<span class="comment">*    Clear handle from memory and unload related resources</span></div>
-<div class="line"><a name="l01230"></a><span class="lineno"> 1230</span>&#160;<span class="comment">*</span></div>
-<div class="line"><a name="l01231"></a><span class="lineno"> 1231</span>&#160;<span class="comment">*  @param[in] handle</span></div>
-<div class="line"><a name="l01232"></a><span class="lineno"> 1232</span>&#160;<span class="comment">*    Reference to the handle to be unloaded</span></div>
-<div class="line"><a name="l01233"></a><span class="lineno"> 1233</span>&#160;<span class="comment">*</span></div>
-<div class="line"><a name="l01234"></a><span class="lineno"> 1234</span>&#160;<span class="comment">*  @return</span></div>
-<div class="line"><a name="l01235"></a><span class="lineno"> 1235</span>&#160;<span class="comment">*    Zero if success, different from zero otherwise</span></div>
-<div class="line"><a name="l01236"></a><span class="lineno"> 1236</span>&#160;<span class="comment">*/</span></div>
-<div class="line"><a name="l01237"></a><span class="lineno"> 1237</span>&#160;METACALL_API <span class="keywordtype">int</span> <a class="code" href="metacall_8h.html#ae1f35c9c5cd2b375e8fb00b9d8c5890c">metacall_clear</a>(<span class="keywordtype">void</span> *handle);</div>
-<div class="line"><a name="l01238"></a><span class="lineno"> 1238</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l01239"></a><span class="lineno"> 1239</span>&#160;<span class="comment">/**</span></div>
-<div class="line"><a name="l01240"></a><span class="lineno"> 1240</span>&#160;<span class="comment">*  @brief</span></div>
-<div class="line"><a name="l01241"></a><span class="lineno"> 1241</span>&#160;<span class="comment">*    Destroy MetaCall library</span></div>
+<div class="line"><a name="l01222"></a><span class="lineno"> 1222</span>&#160;<span class="comment">*  @param[out] size</span></div>
+<div class="line"><a name="l01223"></a><span class="lineno"> 1223</span>&#160;<span class="comment">*    Size in bytes of return buffer</span></div>
+<div class="line"><a name="l01224"></a><span class="lineno"> 1224</span>&#160;<span class="comment">*</span></div>
+<div class="line"><a name="l01225"></a><span class="lineno"> 1225</span>&#160;<span class="comment">*  @param[in] allocator</span></div>
+<div class="line"><a name="l01226"></a><span class="lineno"> 1226</span>&#160;<span class="comment">*    Pointer to allocator will allocate the string</span></div>
+<div class="line"><a name="l01227"></a><span class="lineno"> 1227</span>&#160;<span class="comment">*</span></div>
+<div class="line"><a name="l01228"></a><span class="lineno"> 1228</span>&#160;<span class="comment">*  @return</span></div>
+<div class="line"><a name="l01229"></a><span class="lineno"> 1229</span>&#160;<span class="comment">*    String containing introspection information</span></div>
+<div class="line"><a name="l01230"></a><span class="lineno"> 1230</span>&#160;<span class="comment">*/</span></div>
+<div class="line"><a name="l01231"></a><span class="lineno"> 1231</span>&#160;METACALL_API <span class="keywordtype">char</span> *<a class="code" href="metacall_8h.html#ab9d6a8fa4d186f14741ef15015798eb0">metacall_inspect</a>(<span class="keywordtype">size_t</span> *size, <span class="keywordtype">void</span> *allocator);</div>
+<div class="line"><a name="l01232"></a><span class="lineno"> 1232</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l01233"></a><span class="lineno"> 1233</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l01234"></a><span class="lineno"> 1234</span>&#160;<span class="comment">*  @brief</span></div>
+<div class="line"><a name="l01235"></a><span class="lineno"> 1235</span>&#160;<span class="comment">*    Convert the value @v to serialized string</span></div>
+<div class="line"><a name="l01236"></a><span class="lineno"> 1236</span>&#160;<span class="comment">*</span></div>
+<div class="line"><a name="l01237"></a><span class="lineno"> 1237</span>&#160;<span class="comment">*  @param[in] name</span></div>
+<div class="line"><a name="l01238"></a><span class="lineno"> 1238</span>&#160;<span class="comment">*    Name of the serial to be used</span></div>
+<div class="line"><a name="l01239"></a><span class="lineno"> 1239</span>&#160;<span class="comment">*</span></div>
+<div class="line"><a name="l01240"></a><span class="lineno"> 1240</span>&#160;<span class="comment">*  @param[in] v</span></div>
+<div class="line"><a name="l01241"></a><span class="lineno"> 1241</span>&#160;<span class="comment">*    Reference to the value</span></div>
 <div class="line"><a name="l01242"></a><span class="lineno"> 1242</span>&#160;<span class="comment">*</span></div>
-<div class="line"><a name="l01243"></a><span class="lineno"> 1243</span>&#160;<span class="comment">*  @return</span></div>
-<div class="line"><a name="l01244"></a><span class="lineno"> 1244</span>&#160;<span class="comment">*    Zero if success, different from zero otherwise</span></div>
-<div class="line"><a name="l01245"></a><span class="lineno"> 1245</span>&#160;<span class="comment">*/</span></div>
-<div class="line"><a name="l01246"></a><span class="lineno"> 1246</span>&#160;METACALL_API <span class="keywordtype">int</span> <a class="code" href="metacall_8h.html#aca8745a9f261bc3d37ee9156b991296f">metacall_destroy</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l01247"></a><span class="lineno"> 1247</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l01248"></a><span class="lineno"> 1248</span>&#160;<span class="comment">/**</span></div>
-<div class="line"><a name="l01249"></a><span class="lineno"> 1249</span>&#160;<span class="comment">*  @brief</span></div>
-<div class="line"><a name="l01250"></a><span class="lineno"> 1250</span>&#160;<span class="comment">*    Provide the module information</span></div>
-<div class="line"><a name="l01251"></a><span class="lineno"> 1251</span>&#160;<span class="comment">*</span></div>
-<div class="line"><a name="l01252"></a><span class="lineno"> 1252</span>&#160;<span class="comment">*  @return</span></div>
-<div class="line"><a name="l01253"></a><span class="lineno"> 1253</span>&#160;<span class="comment">*    Static string containing module information</span></div>
-<div class="line"><a name="l01254"></a><span class="lineno"> 1254</span>&#160;<span class="comment">*/</span></div>
-<div class="line"><a name="l01255"></a><span class="lineno"> 1255</span>&#160;METACALL_API <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code" href="metacall_8h.html#a1e8b06591a5564cfa4f1209e84ad5e78">metacall_print_info</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l01256"></a><span class="lineno"> 1256</span>&#160; </div>
-<div class="line"><a name="l01257"></a><span class="lineno"> 1257</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l01258"></a><span class="lineno"> 1258</span>&#160;}</div>
-<div class="line"><a name="l01259"></a><span class="lineno"> 1259</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l01260"></a><span class="lineno"> 1260</span>&#160; </div>
-<div class="line"><a name="l01261"></a><span class="lineno"> 1261</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* METACALL_H */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l01243"></a><span class="lineno"> 1243</span>&#160;<span class="comment">*  @param[out] size</span></div>
+<div class="line"><a name="l01244"></a><span class="lineno"> 1244</span>&#160;<span class="comment">*    Size of new allocated string</span></div>
+<div class="line"><a name="l01245"></a><span class="lineno"> 1245</span>&#160;<span class="comment">*</span></div>
+<div class="line"><a name="l01246"></a><span class="lineno"> 1246</span>&#160;<span class="comment">*  @param[in] allocator</span></div>
+<div class="line"><a name="l01247"></a><span class="lineno"> 1247</span>&#160;<span class="comment">*    Pointer to allocator will allocate the string</span></div>
+<div class="line"><a name="l01248"></a><span class="lineno"> 1248</span>&#160;<span class="comment">*</span></div>
+<div class="line"><a name="l01249"></a><span class="lineno"> 1249</span>&#160;<span class="comment">*  @return</span></div>
+<div class="line"><a name="l01250"></a><span class="lineno"> 1250</span>&#160;<span class="comment">*    New allocated string containing stringified value</span></div>
+<div class="line"><a name="l01251"></a><span class="lineno"> 1251</span>&#160;<span class="comment">*/</span></div>
+<div class="line"><a name="l01252"></a><span class="lineno"> 1252</span>&#160;METACALL_API <span class="keywordtype">char</span> *<a class="code" href="metacall_8h.html#acdcbeeeafdc83e9b69937265a0da53c3">metacall_serialize</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *name, <span class="keywordtype">void</span> *v, <span class="keywordtype">size_t</span> *size, <span class="keywordtype">void</span> *allocator);</div>
+<div class="line"><a name="l01253"></a><span class="lineno"> 1253</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l01254"></a><span class="lineno"> 1254</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l01255"></a><span class="lineno"> 1255</span>&#160;<span class="comment">*  @brief</span></div>
+<div class="line"><a name="l01256"></a><span class="lineno"> 1256</span>&#160;<span class="comment">*    Convert the string @buffer to value</span></div>
+<div class="line"><a name="l01257"></a><span class="lineno"> 1257</span>&#160;<span class="comment">*</span></div>
+<div class="line"><a name="l01258"></a><span class="lineno"> 1258</span>&#160;<span class="comment">*  @param[in] name</span></div>
+<div class="line"><a name="l01259"></a><span class="lineno"> 1259</span>&#160;<span class="comment">*    Name of the serial to be used</span></div>
+<div class="line"><a name="l01260"></a><span class="lineno"> 1260</span>&#160;<span class="comment">*</span></div>
+<div class="line"><a name="l01261"></a><span class="lineno"> 1261</span>&#160;<span class="comment">*  @param[in] buffer</span></div>
+<div class="line"><a name="l01262"></a><span class="lineno"> 1262</span>&#160;<span class="comment">*    String to be deserialized</span></div>
+<div class="line"><a name="l01263"></a><span class="lineno"> 1263</span>&#160;<span class="comment">*</span></div>
+<div class="line"><a name="l01264"></a><span class="lineno"> 1264</span>&#160;<span class="comment">*  @param[in] size</span></div>
+<div class="line"><a name="l01265"></a><span class="lineno"> 1265</span>&#160;<span class="comment">*    Size of string @buffer</span></div>
+<div class="line"><a name="l01266"></a><span class="lineno"> 1266</span>&#160;<span class="comment">*</span></div>
+<div class="line"><a name="l01267"></a><span class="lineno"> 1267</span>&#160;<span class="comment">*  @param[in] allocator</span></div>
+<div class="line"><a name="l01268"></a><span class="lineno"> 1268</span>&#160;<span class="comment">*    Pointer to allocator will allocate the value</span></div>
+<div class="line"><a name="l01269"></a><span class="lineno"> 1269</span>&#160;<span class="comment">*</span></div>
+<div class="line"><a name="l01270"></a><span class="lineno"> 1270</span>&#160;<span class="comment">*  @return</span></div>
+<div class="line"><a name="l01271"></a><span class="lineno"> 1271</span>&#160;<span class="comment">*    New allocated value representing the string (must be freed)</span></div>
+<div class="line"><a name="l01272"></a><span class="lineno"> 1272</span>&#160;<span class="comment">*/</span></div>
+<div class="line"><a name="l01273"></a><span class="lineno"> 1273</span>&#160;METACALL_API <span class="keywordtype">void</span> *<a class="code" href="metacall_8h.html#a0d45c99a4491e8bbad9d66aa8e719e54">metacall_deserialize</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *name, <span class="keyword">const</span> <span class="keywordtype">char</span> *buffer, <span class="keywordtype">size_t</span> size, <span class="keywordtype">void</span> *allocator);</div>
+<div class="line"><a name="l01274"></a><span class="lineno"> 1274</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l01275"></a><span class="lineno"> 1275</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l01276"></a><span class="lineno"> 1276</span>&#160;<span class="comment">*  @brief</span></div>
+<div class="line"><a name="l01277"></a><span class="lineno"> 1277</span>&#160;<span class="comment">*    Clear handle from memory and unload related resources</span></div>
+<div class="line"><a name="l01278"></a><span class="lineno"> 1278</span>&#160;<span class="comment">*</span></div>
+<div class="line"><a name="l01279"></a><span class="lineno"> 1279</span>&#160;<span class="comment">*  @param[in] handle</span></div>
+<div class="line"><a name="l01280"></a><span class="lineno"> 1280</span>&#160;<span class="comment">*    Reference to the handle to be unloaded</span></div>
+<div class="line"><a name="l01281"></a><span class="lineno"> 1281</span>&#160;<span class="comment">*</span></div>
+<div class="line"><a name="l01282"></a><span class="lineno"> 1282</span>&#160;<span class="comment">*  @return</span></div>
+<div class="line"><a name="l01283"></a><span class="lineno"> 1283</span>&#160;<span class="comment">*    Zero if success, different from zero otherwise</span></div>
+<div class="line"><a name="l01284"></a><span class="lineno"> 1284</span>&#160;<span class="comment">*/</span></div>
+<div class="line"><a name="l01285"></a><span class="lineno"> 1285</span>&#160;METACALL_API <span class="keywordtype">int</span> <a class="code" href="metacall_8h.html#ae1f35c9c5cd2b375e8fb00b9d8c5890c">metacall_clear</a>(<span class="keywordtype">void</span> *handle);</div>
+<div class="line"><a name="l01286"></a><span class="lineno"> 1286</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l01287"></a><span class="lineno"> 1287</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l01288"></a><span class="lineno"> 1288</span>&#160;<span class="comment">*  @brief</span></div>
+<div class="line"><a name="l01289"></a><span class="lineno"> 1289</span>&#160;<span class="comment">*    Destroy MetaCall library</span></div>
+<div class="line"><a name="l01290"></a><span class="lineno"> 1290</span>&#160;<span class="comment">*</span></div>
+<div class="line"><a name="l01291"></a><span class="lineno"> 1291</span>&#160;<span class="comment">*  @return</span></div>
+<div class="line"><a name="l01292"></a><span class="lineno"> 1292</span>&#160;<span class="comment">*    Zero if success, different from zero otherwise</span></div>
+<div class="line"><a name="l01293"></a><span class="lineno"> 1293</span>&#160;<span class="comment">*/</span></div>
+<div class="line"><a name="l01294"></a><span class="lineno"> 1294</span>&#160;METACALL_API <span class="keywordtype">int</span> <a class="code" href="metacall_8h.html#aca8745a9f261bc3d37ee9156b991296f">metacall_destroy</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l01295"></a><span class="lineno"> 1295</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l01296"></a><span class="lineno"> 1296</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l01297"></a><span class="lineno"> 1297</span>&#160;<span class="comment">*  @brief</span></div>
+<div class="line"><a name="l01298"></a><span class="lineno"> 1298</span>&#160;<span class="comment">*    Provide the module information</span></div>
+<div class="line"><a name="l01299"></a><span class="lineno"> 1299</span>&#160;<span class="comment">*</span></div>
+<div class="line"><a name="l01300"></a><span class="lineno"> 1300</span>&#160;<span class="comment">*  @return</span></div>
+<div class="line"><a name="l01301"></a><span class="lineno"> 1301</span>&#160;<span class="comment">*    Static string containing module information</span></div>
+<div class="line"><a name="l01302"></a><span class="lineno"> 1302</span>&#160;<span class="comment">*/</span></div>
+<div class="line"><a name="l01303"></a><span class="lineno"> 1303</span>&#160;METACALL_API <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code" href="metacall_8h.html#a1e8b06591a5564cfa4f1209e84ad5e78">metacall_print_info</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l01304"></a><span class="lineno"> 1304</span>&#160; </div>
+<div class="line"><a name="l01305"></a><span class="lineno"> 1305</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l01306"></a><span class="lineno"> 1306</span>&#160;}</div>
+<div class="line"><a name="l01307"></a><span class="lineno"> 1307</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l01308"></a><span class="lineno"> 1308</span>&#160; </div>
+<div class="line"><a name="l01309"></a><span class="lineno"> 1309</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* METACALL_H */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="ametacall_8h_html_a9c0bd7df095d9a4db05204f04fa657a3"><div class="ttname"><a href="metacall_8h.html#a9c0bd7df095d9a4db05204f04fa657a3">metacall_argv</a></div><div class="ttdeci">METACALL_API char ** metacall_argv(void)</div><div class="ttdoc">Get the arguments in which MetaCall was initialized.</div></div>
 <div class="ttc" id="ametacall_8h_html_ad69032d3eec3834b36d907141f32332a"><div class="ttname"><a href="metacall_8h.html#ad69032d3eec3834b36d907141f32332a">metacall_class_static_set</a></div><div class="ttdeci">METACALL_API int metacall_class_static_set(void *cls, const char *key, void *v)</div><div class="ttdoc">Set an attribute to @cls by @key name.</div></div>
 <div class="ttc" id="ametacall_8h_html_a6111e7af53fb3dcf04018aa7a06b01e3"><div class="ttname"><a href="metacall_8h.html#a6111e7af53fb3dcf04018aa7a06b01e3">metacallfms_await</a></div><div class="ttdeci">METACALL_API void * metacallfms_await(void *func, const char *buffer, size_t size, void *allocator, void *(*resolve_callback)(void *, void *), void *(*reject_callback)(void *, void *), void *data)</div><div class="ttdoc">Call an asynchronous function anonymously by function @func and serial @buffer of size @size.</div></div>
 <div class="ttc" id="ametacall_8h_html_a4aa530f2d57ee74faec5152ab59cfd2c"><div class="ttname"><a href="metacall_8h.html#a4aa530f2d57ee74faec5152ab59cfd2c">metacall_serial</a></div><div class="ttdeci">const METACALL_API char * metacall_serial(void)</div><div class="ttdoc">Returns default serializer used by MetaCall.</div></div>
+<div class="ttc" id="ametacall_8h_html_ac0e15e8ca121a9b0c5b1f22f760d7137"><div class="ttname"><a href="metacall_8h.html#ac0e15e8ca121a9b0c5b1f22f760d7137">metacallt_class</a></div><div class="ttdeci">METACALL_API void * metacallt_class(void *cls, const char *name, const enum metacall_value_id ret, void *args[], size_t size)</div><div class="ttdoc">Call a class method anonymously by value array @args and return value type @ret (helps to resolve ove...</div></div>
 <div class="ttc" id="ametacall_8h_html_a26ff10520ec45fc6dc56e6b731f7cd98"><div class="ttname"><a href="metacall_8h.html#a26ff10520ec45fc6dc56e6b731f7cd98">metacall_function_parameter_type</a></div><div class="ttdeci">METACALL_API int metacall_function_parameter_type(void *func, size_t parameter, enum metacall_value_id *id)</div><div class="ttdoc">Get the function parameter type id.</div></div>
 <div class="ttc" id="ametacall_8h_html_ab6fd858391d840206fe14725c2b695e2"><div class="ttname"><a href="metacall_8h.html#ab6fd858391d840206fe14725c2b695e2">metacall_execution_path_s</a></div><div class="ttdeci">METACALL_API int metacall_execution_path_s(const char *tag, size_t tag_length, const char *path, size_t path_length)</div><div class="ttdoc">Set a execution path defined by @path to the extension script @tag with length.</div></div>
 <div class="ttc" id="ametacall_8h_html_a70337e2f826dab637d640337404831cf"><div class="ttname"><a href="metacall_8h.html#a70337e2f826dab637d640337404831cf">metacall_class_static_get</a></div><div class="ttdeci">METACALL_API void * metacall_class_static_get(void *cls, const char *key)</div><div class="ttdoc">Get an attribute from @cls by @key name.</div></div>
@@ -1364,6 +1413,7 @@ $(document).ready(function(){initNavTree('metacall_8h_source.html',''); initResi
 <div class="ttc" id="ametacall__log_8h_html"><div class="ttname"><a href="metacall__log_8h.html">metacall_log.h</a></div></div>
 <div class="ttc" id="ametacall_8h_html_ae1f35c9c5cd2b375e8fb00b9d8c5890c"><div class="ttname"><a href="metacall_8h.html#ae1f35c9c5cd2b375e8fb00b9d8c5890c">metacall_clear</a></div><div class="ttdeci">METACALL_API int metacall_clear(void *handle)</div><div class="ttdoc">Clear handle from memory and unload related resources.</div></div>
 <div class="ttc" id="ametacall_8h_html_ae381876c35f6b194c96c19a9b808e313"><div class="ttname"><a href="metacall_8h.html#ae381876c35f6b194c96c19a9b808e313">metacallfms</a></div><div class="ttdeci">METACALL_API void * metacallfms(void *func, const char *buffer, size_t size, void *allocator)</div><div class="ttdoc">Call a function anonymously by function @func and serial @buffer of size @size.</div></div>
+<div class="ttc" id="ametacall_8h_html_a1391d4d2e8f9dc919ecb6ce5ac00916f"><div class="ttname"><a href="metacall_8h.html#a1391d4d2e8f9dc919ecb6ce5ac00916f">metacallt_object</a></div><div class="ttdeci">METACALL_API void * metacallt_object(void *obj, const char *name, const enum metacall_value_id ret, void *args[], size_t size)</div><div class="ttdoc">Call a object method anonymously by value array @args and return value type @ret (helps to resolve ov...</div></div>
 <div class="ttc" id="ametacall_8h_html_a0d45c99a4491e8bbad9d66aa8e719e54"><div class="ttname"><a href="metacall_8h.html#a0d45c99a4491e8bbad9d66aa8e719e54">metacall_deserialize</a></div><div class="ttdeci">METACALL_API void * metacall_deserialize(const char *name, const char *buffer, size_t size, void *allocator)</div><div class="ttdoc">Convert the string @buffer to value.</div></div>
 <div class="ttc" id="ametacall_8h_html_a567cbdd3c398e4bcfab8e07ff76de06b"><div class="ttname"><a href="metacall_8h.html#a567cbdd3c398e4bcfab8e07ff76de06b">metacall_object_set</a></div><div class="ttdeci">METACALL_API int metacall_object_set(void *obj, const char *key, void *v)</div><div class="ttdoc">Set an attribute to @obj by @key name.</div></div>
 <div class="ttc" id="ametacall_8h_html_afcaf2d96cbe7e899e9f5450be7d7d1c4"><div class="ttname"><a href="metacall_8h.html#afcaf2d96cbe7e899e9f5450be7d7d1c4">metacallfv_s</a></div><div class="ttdeci">METACALL_API void * metacallfv_s(void *func, void *args[], size_t size)</div><div class="ttdoc">Call a function anonymously by value array @args and function @func.</div></div>
@@ -1373,9 +1423,9 @@ $(document).ready(function(){initNavTree('metacall_8h_source.html',''); initResi
 <div class="ttc" id="ametacall_8h_html_a698f9b1a031af836302d2634e3194f75"><div class="ttname"><a href="metacall_8h.html#a698f9b1a031af836302d2634e3194f75">metacall_await_s</a></div><div class="ttdeci">METACALL_API void * metacall_await_s(const char *name, void *args[], size_t size, void *(*resolve_callback)(void *, void *), void *(*reject_callback)(void *, void *), void *data)</div><div class="ttdoc">Executes an asynchronous call to the function and registers a callback to be executed when a future i...</div></div>
 <div class="ttc" id="ametacall_8h_html_af773258f002ae5ea241b945ae4315d49"><div class="ttname"><a href="metacall_8h.html#af773258f002ae5ea241b945ae4315d49">metacall_args_size</a></div><div class="ttdeci">METACALL_API size_t metacall_args_size(void)</div><div class="ttdoc">Amount of function call arguments supported by MetaCall.</div></div>
 <div class="ttc" id="ametacall_8h_html_a9c70099ab9944bc953ff0998fa92f97e"><div class="ttname"><a href="metacall_8h.html#a9c70099ab9944bc953ff0998fa92f97e">metacall_initialize_ex</a></div><div class="ttdeci">METACALL_API int metacall_initialize_ex(struct metacall_initialize_configuration_type initialize_config[])</div><div class="ttdoc">Initialize MetaCall library with configuration arguments.</div></div>
-<div class="ttc" id="ametacall_8h_html_a9a59bb8134aa3243a995d871262f5085"><div class="ttname"><a href="metacall_8h.html#a9a59bb8134aa3243a995d871262f5085">metacallv_class</a></div><div class="ttdeci">METACALL_API void * metacallv_class(void *cls, const char *name, void *args[], size_t argc)</div><div class="ttdoc">Call a class method anonymously by value array @args.</div></div>
 <div class="ttc" id="ametacall_8h_html_a4c8d0fa0f6b7c3607bd92524a11f3c5c"><div class="ttname"><a href="metacall_8h.html#a4c8d0fa0f6b7c3607bd92524a11f3c5c">metacallfmv_await_s</a></div><div class="ttdeci">METACALL_API void * metacallfmv_await_s(void *func, void *keys[], void *values[], size_t size, void *(*resolve_callback)(void *, void *), void *(*reject_callback)(void *, void *), void *data)</div><div class="ttdoc">Call an asynchronous function anonymously by value map (@keys -&gt; @values) and function @func.</div></div>
 <div class="ttc" id="ametacall_8h_html_ae62d509141fe85874f1865f61b4075af"><div class="ttname"><a href="metacall_8h.html#ae62d509141fe85874f1865f61b4075af">metacall_load_from_package</a></div><div class="ttdeci">METACALL_API int metacall_load_from_package(const char *tag, const char *path, void **handle)</div><div class="ttdoc">Loads a package of scrips from file specified by @path into loader defined by @extension.</div></div>
+<div class="ttc" id="ametacall_8h_html_aee922f6a17e2d304c8074342779205c1"><div class="ttname"><a href="metacall_8h.html#aee922f6a17e2d304c8074342779205c1">metacall_class_new</a></div><div class="ttdeci">METACALL_API void * metacall_class_new(void *cls, const char *name, void *args[], size_t size)</div><div class="ttdoc">Create a new object instance from @cls by value array @args.</div></div>
 <div class="ttc" id="ametacall_8h_html_a810ca74b8efef842df8ea7baf2b87e67"><div class="ttname"><a href="metacall_8h.html#a810ca74b8efef842df8ea7baf2b87e67">metacall_register</a></div><div class="ttdeci">METACALL_API int metacall_register(const char *name, void *(*invoke)(size_t, void *[], void *), void **func, enum metacall_value_id return_type, size_t size,...)</div></div>
 <div class="ttc" id="ametacall_8h_html_acdcbeeeafdc83e9b69937265a0da53c3"><div class="ttname"><a href="metacall_8h.html#acdcbeeeafdc83e9b69937265a0da53c3">metacall_serialize</a></div><div class="ttdeci">METACALL_API char * metacall_serialize(const char *name, void *v, size_t *size, void *allocator)</div><div class="ttdoc">Convert the value @v to serialized string.</div></div>
 <div class="ttc" id="ametacall_8h_html_abaa8b58b55e753ebcb2c6ca7221261fe"><div class="ttname"><a href="metacall_8h.html#abaa8b58b55e753ebcb2c6ca7221261fe">metacallhv</a></div><div class="ttdeci">METACALL_API void * metacallhv(void *handle, const char *name, void *args[])</div><div class="ttdoc">Call a function anonymously by handle @handle value array @args This function allows to avoid name co...</div></div>
@@ -1400,9 +1450,10 @@ $(document).ready(function(){initNavTree('metacall_8h_source.html',''); initResi
 <div class="ttc" id="astructmetacall__initialize__configuration__type_html"><div class="ttname"><a href="structmetacall__initialize__configuration__type.html">metacall_initialize_configuration_type</a></div><div class="ttdef"><b>Definition:</b> metacall.h:56</div></div>
 <div class="ttc" id="ametacall_8h_html_a42f7b6d24d91f6aa2b1a1bf773a2be3b"><div class="ttname"><a href="metacall_8h.html#a42f7b6d24d91f6aa2b1a1bf773a2be3b">metacall_function_async</a></div><div class="ttdeci">METACALL_API int metacall_function_async(void *func)</div><div class="ttdoc">Check if the function @func is asynchronous or synchronous.</div></div>
 <div class="ttc" id="ametacall_8h_html_a52ef2927638d958c6e76555fc49a765b"><div class="ttname"><a href="metacall_8h.html#a52ef2927638d958c6e76555fc49a765b">metacall_await</a></div><div class="ttdeci">METACALL_API void * metacall_await(const char *name, void *args[], void *(*resolve_callback)(void *, void *), void *(*reject_callback)(void *, void *), void *data)</div><div class="ttdoc">Executes an asynchronous call to the function and registers a callback to be executed when a future i...</div></div>
+<div class="ttc" id="ametacall_8h_html_a1b346165cc3e9d4c958bf92c65f71ef5"><div class="ttname"><a href="metacall_8h.html#a1b346165cc3e9d4c958bf92c65f71ef5">metacallv_object</a></div><div class="ttdeci">METACALL_API void * metacallv_object(void *obj, const char *name, void *args[], size_t size)</div><div class="ttdoc">Call an object method anonymously by value array @args.</div></div>
 <div class="ttc" id="ametacall_8h_html_a6de5e0d836963404a27918bfade98cad"><div class="ttname"><a href="metacall_8h.html#a6de5e0d836963404a27918bfade98cad">metacallfs</a></div><div class="ttdeci">METACALL_API void * metacallfs(void *func, const char *buffer, size_t size, void *allocator)</div><div class="ttdoc">Call a function anonymously by function @func and serial @buffer of size @size.</div></div>
 <div class="ttc" id="ametacall_8h_html_a391f6f382c453d8903889a910f59bf4c"><div class="ttname"><a href="metacall_8h.html#a391f6f382c453d8903889a910f59bf4c">metacall_function_return_type</a></div><div class="ttdeci">METACALL_API int metacall_function_return_type(void *func, enum metacall_value_id *id)</div><div class="ttdoc">Get the function return type id.</div></div>
-<div class="ttc" id="ametacall_8h_html_a84679047389d04a406f1e3a91fa00e1d"><div class="ttname"><a href="metacall_8h.html#a84679047389d04a406f1e3a91fa00e1d">metacallv_object</a></div><div class="ttdeci">METACALL_API void * metacallv_object(void *obj, const char *name, void *args[], size_t argc)</div><div class="ttdoc">Call an object method anonymously by value array @args.</div></div>
+<div class="ttc" id="ametacall_8h_html_a97f50d305c683edfbeec022d41d8b749"><div class="ttname"><a href="metacall_8h.html#a97f50d305c683edfbeec022d41d8b749">metacallv_class</a></div><div class="ttdeci">METACALL_API void * metacallv_class(void *cls, const char *name, void *args[], size_t size)</div><div class="ttdoc">Call a class method anonymously by value array @args (this procedure assumes there's no overloaded me...</div></div>
 <div class="ttc" id="ametacall_8h_html_a00a0cad16a66aaaab0f2e523ee390be3"><div class="ttname"><a href="metacall_8h.html#a00a0cad16a66aaaab0f2e523ee390be3">metacall_load_from_configuration</a></div><div class="ttdeci">METACALL_API int metacall_load_from_configuration(const char *path, void **handle, void *allocator)</div><div class="ttdoc">Loads a a list of scrips from configuration specified by @path into loader with the following format:...</div></div>
 <div class="ttc" id="ametacall_8h_html_acadaee23ccbd4d29087d617b07e1a346"><div class="ttname"><a href="metacall_8h.html#acadaee23ccbd4d29087d617b07e1a346">metacall_argc</a></div><div class="ttdeci">METACALL_API int metacall_argc()</div><div class="ttdoc">Get the number of arguments in which MetaCall was initialized.</div></div>
 <div class="ttc" id="ametacall_8h_html_a4aae2677499d7bc7992840e90d754d83"><div class="ttname"><a href="metacall_8h.html#a4aae2677499d7bc7992840e90d754d83">metacallfv_await</a></div><div class="ttdeci">METACALL_API void * metacallfv_await(void *func, void *args[], void *(*resolve_callback)(void *, void *), void *(*reject_callback)(void *, void *), void *data)</div><div class="ttdoc">Call an asynchronous function anonymously by value array @args and function @func.</div></div>
@@ -1420,7 +1471,6 @@ $(document).ready(function(){initNavTree('metacall_8h_source.html',''); initResi
 <div class="ttc" id="ametacall_8h_html_a93e003693bcf043424e5bd77255ef629"><div class="ttname"><a href="metacall_8h.html#a93e003693bcf043424e5bd77255ef629">metacallt_s</a></div><div class="ttdeci">METACALL_API void * metacallt_s(const char *name, const enum metacall_value_id ids[], size_t size,...)</div><div class="ttdoc">Call a function anonymously by type array @ids and variable arguments @va_args.</div></div>
 <div class="ttc" id="ametacall_8h_html_ae41ffa4531b7819e7f0d1c580ef508c5"><div class="ttname"><a href="metacall_8h.html#ae41ffa4531b7819e7f0d1c580ef508c5">metacall_function_size</a></div><div class="ttdeci">METACALL_API size_t metacall_function_size(void *func)</div><div class="ttdoc">Get minimun mumber of arguments accepted by function @func.</div></div>
 <div class="ttc" id="ametacall_8h_html_a137dbf351f620ac5c1daebf1564f099b"><div class="ttname"><a href="metacall_8h.html#a137dbf351f620ac5c1daebf1564f099b">metacall_function</a></div><div class="ttdeci">METACALL_API void * metacall_function(const char *name)</div></div>
-<div class="ttc" id="ametacall_8h_html_a3fb7a043355dd7fd9974cea54ff93814"><div class="ttname"><a href="metacall_8h.html#a3fb7a043355dd7fd9974cea54ff93814">metacall_class_new</a></div><div class="ttdeci">METACALL_API void * metacall_class_new(void *cls, const char *name, void *args[], size_t argc)</div><div class="ttdoc">Create a new object instance from @cls by value array @args.</div></div>
 <div class="ttc" id="ametacall_8h_html_a7029ce54bb2a8fb4516415e42d6d986b"><div class="ttname"><a href="metacall_8h.html#a7029ce54bb2a8fb4516415e42d6d986b">metacallfv</a></div><div class="ttdeci">METACALL_API void * metacallfv(void *func, void *args[])</div><div class="ttdoc">Call a function anonymously by value array @args and function @func.</div></div>
 <div class="ttc" id="ametacall_8h_html_ae0f575287847cd57f5a549b2b211db1d"><div class="ttname"><a href="metacall_8h.html#ae0f575287847cd57f5a549b2b211db1d">metacall_registerv</a></div><div class="ttdeci">METACALL_API int metacall_registerv(const char *name, void *(*invoke)(size_t, void *[], void *), void **func, enum metacall_value_id return_type, size_t size, enum metacall_value_id types[])</div></div>
 <div class="ttc" id="ametacall_8h_html_ad934b33c0c04c424d7080735d86a240c"><div class="ttname"><a href="metacall_8h.html#ad934b33c0c04c424d7080735d86a240c">metacallv_s</a></div><div class="ttdeci">METACALL_API void * metacallv_s(const char *name, void *args[], size_t size)</div><div class="ttdoc">Call a function anonymously by value array @args.</div></div>
@@ -1428,7 +1478,7 @@ $(document).ready(function(){initNavTree('metacall_8h_source.html',''); initResi
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_e44cd7e635bb763401c0caf0a476eb95.html">metacall</a></li><li class="navelem"><a class="el" href="dir_862189cd8eef5d16f2384f5f677984a6.html">include</a></li><li class="navelem"><a class="el" href="dir_89c17dc2999f746bfb4b59fe5ba3359a.html">metacall</a></li><li class="navelem"><a class="el" href="metacall_8h.html">metacall.h</a></li>
-    <li class="footer">Generated on Wed Jun 30 2021 13:22:00 for MetaCall by
+    <li class="footer">Generated on Mon Oct 18 2021 15:02:47 for MetaCall by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
   </ul>

@@ -413,15 +413,19 @@ Parameters                    </title>
         <itemizedlist>
             <listitem><para>METACALL_API void * <link linkend="_metacall_8h_1a62422ba9010c261547585dc014f5f71f">metacall_class</link> (const char *name)</para>
 </listitem>
-            <listitem><para>METACALL_API void * <link linkend="_metacall_8h_1a9a59bb8134aa3243a995d871262f5085">metacallv_class</link> (void *cls, const char *name, void *args[], size_t argc)</para>
+            <listitem><para>METACALL_API void * <link linkend="_metacall_8h_1a97f50d305c683edfbeec022d41d8b749">metacallv_class</link> (void *cls, const char *name, void *args[], size_t size)</para>
 </listitem>
-            <listitem><para>METACALL_API void * <link linkend="_metacall_8h_1a3fb7a043355dd7fd9974cea54ff93814">metacall_class_new</link> (void *cls, const char *name, void *args[], size_t argc)</para>
+            <listitem><para>METACALL_API void * <link linkend="_metacall_8h_1ac0e15e8ca121a9b0c5b1f22f760d7137">metacallt_class</link> (void *cls, const char *name, const enum <link linkend="_metacall__value_8h_1a09df370b94fa034a58dc8048e14ed34d">metacall_value_id</link> ret, void *args[], size_t size)</para>
+</listitem>
+            <listitem><para>METACALL_API void * <link linkend="_metacall_8h_1aee922f6a17e2d304c8074342779205c1">metacall_class_new</link> (void *cls, const char *name, void *args[], size_t size)</para>
 </listitem>
             <listitem><para>METACALL_API void * <link linkend="_metacall_8h_1a70337e2f826dab637d640337404831cf">metacall_class_static_get</link> (void *cls, const char *key)</para>
 </listitem>
             <listitem><para>METACALL_API int <link linkend="_metacall_8h_1ad69032d3eec3834b36d907141f32332a">metacall_class_static_set</link> (void *cls, const char *key, void *v)</para>
 </listitem>
-            <listitem><para>METACALL_API void * <link linkend="_metacall_8h_1a84679047389d04a406f1e3a91fa00e1d">metacallv_object</link> (void *obj, const char *name, void *args[], size_t argc)</para>
+            <listitem><para>METACALL_API void * <link linkend="_metacall_8h_1a1b346165cc3e9d4c958bf92c65f71ef5">metacallv_object</link> (void *obj, const char *name, void *args[], size_t size)</para>
+</listitem>
+            <listitem><para>METACALL_API void * <link linkend="_metacall_8h_1a1391d4d2e8f9dc919ecb6ce5ac00916f">metacallt_object</link> (void *obj, const char *name, const enum <link linkend="_metacall__value_8h_1a09df370b94fa034a58dc8048e14ed34d">metacall_value_id</link> ret, void *args[], size_t size)</para>
 </listitem>
             <listitem><para>METACALL_API void * <link linkend="_metacall_8h_1abf765af19df6abca9ef981ed56db6b92">metacall_object_get</link> (void *obj, const char *key)</para>
 </listitem>
@@ -2792,13 +2796,13 @@ Parameters                    </title>
     <title>metacall_class()</title>
 <indexterm><primary>metacall_class</primary><secondary>metacall.h</secondary></indexterm>
 <indexterm><primary>metacall.h</primary><secondary>metacall_class</secondary></indexterm>
-<para><computeroutput>METACALL_API void* metacall_class (const char * name)</computeroutput></para>    </section><anchor xml:id="_metacall_8h_1a9a59bb8134aa3243a995d871262f5085"/>    <section>
+<para><computeroutput>METACALL_API void* metacall_class (const char * name)</computeroutput></para>    </section><anchor xml:id="_metacall_8h_1a97f50d305c683edfbeec022d41d8b749"/>    <section>
     <title>metacallv_class()</title>
 <indexterm><primary>metacallv_class</primary><secondary>metacall.h</secondary></indexterm>
 <indexterm><primary>metacall.h</primary><secondary>metacallv_class</secondary></indexterm>
-<para><computeroutput>METACALL_API void* metacallv_class (void * cls, const char * name, void * args[], size_t argc)</computeroutput></para><para>
+<para><computeroutput>METACALL_API void* metacallv_class (void * cls, const char * name, void * args[], size_t size)</computeroutput></para><para>
 
-<para>Call a class method anonymously by value array @args. </para>
+<para>Call a class method anonymously by value array @args (this procedure assumes there&apos;s no overloaded methods and does type conversion on values) </para>
 </para>
 
 <para>
@@ -2813,15 +2817,15 @@ Parameters                    </title>
                         <colspec colwidth="4*"/>
                         <tbody>
                             <row>
-                                <entry>in                                </entry>                                <entry>name</entry>
-                                <entry>
-<para>Name of the method</para>
-</entry>
-                            </row>
-                            <row>
                                 <entry>in                                </entry>                                <entry>cls</entry>
                                 <entry>
 <para>Pointer to the class</para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>in                                </entry>                                <entry>name</entry>
+                                <entry>
+<para>Name of the method</para>
 </entry>
                             </row>
                             <row>
@@ -2846,11 +2850,71 @@ Parameters                    </title>
 <para>Pointer to value containing the result of the call </para>
 </formalpara>
 </para>
-    </section><anchor xml:id="_metacall_8h_1a3fb7a043355dd7fd9974cea54ff93814"/>    <section>
+    </section><anchor xml:id="_metacall_8h_1ac0e15e8ca121a9b0c5b1f22f760d7137"/>    <section>
+    <title>metacallt_class()</title>
+<indexterm><primary>metacallt_class</primary><secondary>metacall.h</secondary></indexterm>
+<indexterm><primary>metacall.h</primary><secondary>metacallt_class</secondary></indexterm>
+<para><computeroutput>METACALL_API void* metacallt_class (void * cls, const char * name, const enum <link linkend="_metacall__value_8h_1a09df370b94fa034a58dc8048e14ed34d">metacall_value_id</link> ret, void * args[], size_t size)</computeroutput></para><para>
+
+<para>Call a class method anonymously by value array @args and return value type @ret (helps to resolve overloading methods) </para>
+</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters                    </title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>in                                </entry>                                <entry>cls</entry>
+                                <entry>
+<para>Pointer to the class</para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>in                                </entry>                                <entry>name</entry>
+                                <entry>
+<para>Name of the method</para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>in                                </entry>                                <entry>ret</entry>
+                                <entry>
+<para>Type of the return value of the method</para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>in                                </entry>                                <entry>args</entry>
+                                <entry>
+<para>Array of pointers to data</para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>in                                </entry>                                <entry>size</entry>
+                                <entry>
+<para>Number of elements of args array</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>Pointer to value containing the result of the call </para>
+</formalpara>
+</para>
+    </section><anchor xml:id="_metacall_8h_1aee922f6a17e2d304c8074342779205c1"/>    <section>
     <title>metacall_class_new()</title>
 <indexterm><primary>metacall_class_new</primary><secondary>metacall.h</secondary></indexterm>
 <indexterm><primary>metacall.h</primary><secondary>metacall_class_new</secondary></indexterm>
-<para><computeroutput>METACALL_API void* metacall_class_new (void * cls, const char * name, void * args[], size_t argc)</computeroutput></para><para>
+<para><computeroutput>METACALL_API void* metacall_class_new (void * cls, const char * name, void * args[], size_t size)</computeroutput></para><para>
 
 <para>Create a new object instance from @cls by value array @args. </para>
 </para>
@@ -2990,11 +3054,11 @@ Parameters                    </title>
 <para>Non-zero integer if an error ocurred </para>
 </formalpara>
 </para>
-    </section><anchor xml:id="_metacall_8h_1a84679047389d04a406f1e3a91fa00e1d"/>    <section>
+    </section><anchor xml:id="_metacall_8h_1a1b346165cc3e9d4c958bf92c65f71ef5"/>    <section>
     <title>metacallv_object()</title>
 <indexterm><primary>metacallv_object</primary><secondary>metacall.h</secondary></indexterm>
 <indexterm><primary>metacall.h</primary><secondary>metacallv_object</secondary></indexterm>
-<para><computeroutput>METACALL_API void* metacallv_object (void * obj, const char * name, void * args[], size_t argc)</computeroutput></para><para>
+<para><computeroutput>METACALL_API void* metacallv_object (void * obj, const char * name, void * args[], size_t size)</computeroutput></para><para>
 
 <para>Call an object method anonymously by value array @args. </para>
 </para>
@@ -3020,6 +3084,66 @@ Parameters                    </title>
                                 <entry>in                                </entry>                                <entry>name</entry>
                                 <entry>
 <para>Name of the method</para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>in                                </entry>                                <entry>args</entry>
+                                <entry>
+<para>Array of pointers to data</para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>in                                </entry>                                <entry>size</entry>
+                                <entry>
+<para>Number of elements of args array</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>Pointer to value containing the result of the call </para>
+</formalpara>
+</para>
+    </section><anchor xml:id="_metacall_8h_1a1391d4d2e8f9dc919ecb6ce5ac00916f"/>    <section>
+    <title>metacallt_object()</title>
+<indexterm><primary>metacallt_object</primary><secondary>metacall.h</secondary></indexterm>
+<indexterm><primary>metacall.h</primary><secondary>metacallt_object</secondary></indexterm>
+<para><computeroutput>METACALL_API void* metacallt_object (void * obj, const char * name, const enum <link linkend="_metacall__value_8h_1a09df370b94fa034a58dc8048e14ed34d">metacall_value_id</link> ret, void * args[], size_t size)</computeroutput></para><para>
+
+<para>Call a object method anonymously by value array @args and return value type @ret (helps to resolve overloading methods) </para>
+</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters                    </title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>in                                </entry>                                <entry>obj</entry>
+                                <entry>
+<para>Pointer to the object</para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>in                                </entry>                                <entry>name</entry>
+                                <entry>
+<para>Name of the method</para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>in                                </entry>                                <entry>ret</entry>
+                                <entry>
+<para>Type of the return value of the method</para>
 </entry>
                             </row>
                             <row>

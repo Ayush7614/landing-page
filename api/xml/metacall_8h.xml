@@ -1934,10 +1934,10 @@
         </inbodydescription>
         <location file="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h" line="1039" column="19" declfile="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h" declline="1039" declcolumn="19"/>
       </memberdef>
-      <memberdef kind="function" id="metacall_8h_1a9a59bb8134aa3243a995d871262f5085" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="metacall_8h_1a97f50d305c683edfbeec022d41d8b749" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>METACALL_API void *</type>
         <definition>METACALL_API void* metacallv_class</definition>
-        <argsstring>(void *cls, const char *name, void *args[], size_t argc)</argsstring>
+        <argsstring>(void *cls, const char *name, void *args[], size_t size)</argsstring>
         <name>metacallv_class</name>
         <param>
           <type>void *</type>
@@ -1954,26 +1954,26 @@
         </param>
         <param>
           <type>size_t</type>
-          <declname>argc</declname>
+          <declname>size</declname>
         </param>
         <briefdescription>
-<para>Call a class method anonymously by value array @args. </para>
+<para>Call a class method anonymously by value array @args (this procedure assumes there&apos;s no overloaded methods and does type conversion on values) </para>
         </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername direction="in">name</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Name of the method</para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
 <parameternamelist>
 <parametername direction="in">cls</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>Pointer to the class</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of the method</para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -2001,10 +2001,89 @@
         </inbodydescription>
         <location file="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h" line="1060" column="19" declfile="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h" declline="1060" declcolumn="19"/>
       </memberdef>
-      <memberdef kind="function" id="metacall_8h_1a3fb7a043355dd7fd9974cea54ff93814" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="metacall_8h_1ac0e15e8ca121a9b0c5b1f22f760d7137" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>METACALL_API void *</type>
+        <definition>METACALL_API void* metacallt_class</definition>
+        <argsstring>(void *cls, const char *name, const enum metacall_value_id ret, void *args[], size_t size)</argsstring>
+        <name>metacallt_class</name>
+        <param>
+          <type>void *</type>
+          <declname>cls</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>const enum <ref refid="metacall__value_8h_1a09df370b94fa034a58dc8048e14ed34d" kindref="member">metacall_value_id</ref></type>
+          <declname>ret</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>args</declname>
+          <array>[]</array>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+<para>Call a class method anonymously by value array @args and return value type @ret (helps to resolve overloading methods) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">cls</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the class</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of the method</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">ret</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Type of the return value of the method</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">args</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Array of pointers to data</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of elements of args array</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Pointer to value containing the result of the call </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h" line="1084" column="19" declfile="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h" declline="1084" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="function" id="metacall_8h_1aee922f6a17e2d304c8074342779205c1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>METACALL_API void *</type>
         <definition>METACALL_API void* metacall_class_new</definition>
-        <argsstring>(void *cls, const char *name, void *args[], size_t argc)</argsstring>
+        <argsstring>(void *cls, const char *name, void *args[], size_t size)</argsstring>
         <name>metacall_class_new</name>
         <param>
           <type>void *</type>
@@ -2021,7 +2100,7 @@
         </param>
         <param>
           <type>size_t</type>
-          <declname>argc</declname>
+          <declname>size</declname>
         </param>
         <briefdescription>
 <para>Create a new object instance from @cls by value array @args. </para>
@@ -2066,7 +2145,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h" line="1081" column="19" declfile="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h" declline="1081" declcolumn="19"/>
+        <location file="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h" line="1105" column="19" declfile="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h" declline="1105" declcolumn="19"/>
       </memberdef>
       <memberdef kind="function" id="metacall_8h_1a70337e2f826dab637d640337404831cf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>METACALL_API void *</type>
@@ -2108,7 +2187,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h" line="1096" column="19" declfile="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h" declline="1096" declcolumn="19"/>
+        <location file="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h" line="1120" column="19" declfile="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h" declline="1120" declcolumn="19"/>
       </memberdef>
       <memberdef kind="function" id="metacall_8h_1ad69032d3eec3834b36d907141f32332a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>METACALL_API int</type>
@@ -2162,12 +2241,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h" line="1114" column="18" declfile="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h" declline="1114" declcolumn="18"/>
+        <location file="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h" line="1138" column="18" declfile="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h" declline="1138" declcolumn="18"/>
       </memberdef>
-      <memberdef kind="function" id="metacall_8h_1a84679047389d04a406f1e3a91fa00e1d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="metacall_8h_1a1b346165cc3e9d4c958bf92c65f71ef5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>METACALL_API void *</type>
         <definition>METACALL_API void* metacallv_object</definition>
-        <argsstring>(void *obj, const char *name, void *args[], size_t argc)</argsstring>
+        <argsstring>(void *obj, const char *name, void *args[], size_t size)</argsstring>
         <name>metacallv_object</name>
         <param>
           <type>void *</type>
@@ -2184,7 +2263,7 @@
         </param>
         <param>
           <type>size_t</type>
-          <declname>argc</declname>
+          <declname>size</declname>
         </param>
         <briefdescription>
 <para>Call an object method anonymously by value array @args. </para>
@@ -2229,7 +2308,86 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h" line="1135" column="19" declfile="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h" declline="1135" declcolumn="19"/>
+        <location file="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h" line="1159" column="19" declfile="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h" declline="1159" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="function" id="metacall_8h_1a1391d4d2e8f9dc919ecb6ce5ac00916f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>METACALL_API void *</type>
+        <definition>METACALL_API void* metacallt_object</definition>
+        <argsstring>(void *obj, const char *name, const enum metacall_value_id ret, void *args[], size_t size)</argsstring>
+        <name>metacallt_object</name>
+        <param>
+          <type>void *</type>
+          <declname>obj</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>const enum <ref refid="metacall__value_8h_1a09df370b94fa034a58dc8048e14ed34d" kindref="member">metacall_value_id</ref></type>
+          <declname>ret</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>args</declname>
+          <array>[]</array>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+<para>Call a object method anonymously by value array @args and return value type @ret (helps to resolve overloading methods) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">obj</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the object</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of the method</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">ret</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Type of the return value of the method</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">args</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Array of pointers to data</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of elements of args array</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Pointer to value containing the result of the call </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h" line="1183" column="19" declfile="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h" declline="1183" declcolumn="19"/>
       </memberdef>
       <memberdef kind="function" id="metacall_8h_1abf765af19df6abca9ef981ed56db6b92" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>METACALL_API void *</type>
@@ -2271,7 +2429,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h" line="1150" column="19" declfile="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h" declline="1150" declcolumn="19"/>
+        <location file="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h" line="1198" column="19" declfile="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h" declline="1198" declcolumn="19"/>
       </memberdef>
       <memberdef kind="function" id="metacall_8h_1a567cbdd3c398e4bcfab8e07ff76de06b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>METACALL_API int</type>
@@ -2325,7 +2483,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h" line="1168" column="18" declfile="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h" declline="1168" declcolumn="18"/>
+        <location file="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h" line="1216" column="18" declfile="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h" declline="1216" declcolumn="18"/>
       </memberdef>
       <memberdef kind="function" id="metacall_8h_1ab9d6a8fa4d186f14741ef15015798eb0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>METACALL_API char *</type>
@@ -2367,7 +2525,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h" line="1183" column="19" declfile="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h" declline="1183" declcolumn="19"/>
+        <location file="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h" line="1231" column="19" declfile="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h" declline="1231" declcolumn="19"/>
       </memberdef>
       <memberdef kind="function" id="metacall_8h_1acdcbeeeafdc83e9b69937265a0da53c3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>METACALL_API char *</type>
@@ -2433,7 +2591,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h" line="1204" column="19" declfile="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h" declline="1204" declcolumn="19"/>
+        <location file="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h" line="1252" column="19" declfile="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h" declline="1252" declcolumn="19"/>
       </memberdef>
       <memberdef kind="function" id="metacall_8h_1a0d45c99a4491e8bbad9d66aa8e719e54" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>METACALL_API void *</type>
@@ -2499,7 +2657,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h" line="1225" column="19" declfile="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h" declline="1225" declcolumn="19"/>
+        <location file="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h" line="1273" column="19" declfile="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h" declline="1273" declcolumn="19"/>
       </memberdef>
       <memberdef kind="function" id="metacall_8h_1ae1f35c9c5cd2b375e8fb00b9d8c5890c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>METACALL_API int</type>
@@ -2529,7 +2687,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h" line="1237" column="18" declfile="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h" declline="1237" declcolumn="18"/>
+        <location file="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h" line="1285" column="18" declfile="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h" declline="1285" declcolumn="18"/>
       </memberdef>
       <memberdef kind="function" id="metacall_8h_1aca8745a9f261bc3d37ee9156b991296f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>METACALL_API int</type>
@@ -2549,7 +2707,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h" line="1246" column="18" declfile="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h" declline="1246" declcolumn="18"/>
+        <location file="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h" line="1294" column="18" declfile="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h" declline="1294" declcolumn="18"/>
       </memberdef>
       <memberdef kind="function" id="metacall_8h_1a1e8b06591a5564cfa4f1209e84ad5e78" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>const METACALL_API char *</type>
@@ -2569,7 +2727,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h" line="1255" column="25" declfile="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h" declline="1255" declcolumn="25"/>
+        <location file="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h" line="1303" column="25" declfile="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h" declline="1303" declcolumn="25"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="define">
@@ -4702,13 +4860,13 @@
 <codeline lineno="1040"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
 <codeline lineno="1041"><highlight class="comment">/**</highlight></codeline>
 <codeline lineno="1042"><highlight class="comment">*<sp/><sp/>@brief</highlight></codeline>
-<codeline lineno="1043"><highlight class="comment">*<sp/><sp/><sp/><sp/>Call<sp/>a<sp/>class<sp/>method<sp/>anonymously<sp/>by<sp/>value<sp/>array<sp/>@args</highlight></codeline>
+<codeline lineno="1043"><highlight class="comment">*<sp/><sp/><sp/><sp/>Call<sp/>a<sp/>class<sp/>method<sp/>anonymously<sp/>by<sp/>value<sp/>array<sp/>@args<sp/>(this<sp/>procedure<sp/>assumes<sp/>there&apos;s<sp/>no<sp/>overloaded<sp/>methods<sp/>and<sp/>does<sp/>type<sp/>conversion<sp/>on<sp/>values)</highlight></codeline>
 <codeline lineno="1044"><highlight class="comment">*</highlight></codeline>
-<codeline lineno="1045"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>name</highlight></codeline>
-<codeline lineno="1046"><highlight class="comment">*<sp/><sp/><sp/><sp/>Name<sp/>of<sp/>the<sp/>method</highlight></codeline>
+<codeline lineno="1045"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>cls</highlight></codeline>
+<codeline lineno="1046"><highlight class="comment">*<sp/><sp/><sp/><sp/>Pointer<sp/>to<sp/>the<sp/>class</highlight></codeline>
 <codeline lineno="1047"><highlight class="comment">*</highlight></codeline>
-<codeline lineno="1048"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>cls</highlight></codeline>
-<codeline lineno="1049"><highlight class="comment">*<sp/><sp/><sp/><sp/>Pointer<sp/>to<sp/>the<sp/>class</highlight></codeline>
+<codeline lineno="1048"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>name</highlight></codeline>
+<codeline lineno="1049"><highlight class="comment">*<sp/><sp/><sp/><sp/>Name<sp/>of<sp/>the<sp/>method</highlight></codeline>
 <codeline lineno="1050"><highlight class="comment">*</highlight></codeline>
 <codeline lineno="1051"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>args</highlight></codeline>
 <codeline lineno="1052"><highlight class="comment">*<sp/><sp/><sp/><sp/>Array<sp/>of<sp/>pointers<sp/>to<sp/>data</highlight></codeline>
@@ -4719,208 +4877,256 @@
 <codeline lineno="1057"><highlight class="comment">*<sp/><sp/>@return</highlight></codeline>
 <codeline lineno="1058"><highlight class="comment">*<sp/><sp/><sp/><sp/>Pointer<sp/>to<sp/>value<sp/>containing<sp/>the<sp/>result<sp/>of<sp/>the<sp/>call</highlight></codeline>
 <codeline lineno="1059"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="1060"><highlight class="normal">METACALL_API<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<ref refid="metacall_8h_1a9a59bb8134aa3243a995d871262f5085" kindref="member">metacallv_class</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*cls,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*name,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*args[],<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>argc);</highlight></codeline>
+<codeline lineno="1060"><highlight class="normal">METACALL_API<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<ref refid="metacall_8h_1a97f50d305c683edfbeec022d41d8b749" kindref="member">metacallv_class</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*cls,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*name,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*args[],<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>size);</highlight></codeline>
 <codeline lineno="1061"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
 <codeline lineno="1062"><highlight class="comment">/**</highlight></codeline>
 <codeline lineno="1063"><highlight class="comment">*<sp/><sp/>@brief</highlight></codeline>
-<codeline lineno="1064"><highlight class="comment">*<sp/><sp/><sp/><sp/>Create<sp/>a<sp/>new<sp/>object<sp/>instance<sp/>from<sp/>@cls<sp/>by<sp/>value<sp/>array<sp/>@args</highlight></codeline>
+<codeline lineno="1064"><highlight class="comment">*<sp/><sp/><sp/><sp/>Call<sp/>a<sp/>class<sp/>method<sp/>anonymously<sp/>by<sp/>value<sp/>array<sp/>@args<sp/>and<sp/>return<sp/>value<sp/>type<sp/>@ret<sp/>(helps<sp/>to<sp/>resolve<sp/>overloading<sp/>methods)</highlight></codeline>
 <codeline lineno="1065"><highlight class="comment">*</highlight></codeline>
 <codeline lineno="1066"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>cls</highlight></codeline>
 <codeline lineno="1067"><highlight class="comment">*<sp/><sp/><sp/><sp/>Pointer<sp/>to<sp/>the<sp/>class</highlight></codeline>
 <codeline lineno="1068"><highlight class="comment">*</highlight></codeline>
 <codeline lineno="1069"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>name</highlight></codeline>
-<codeline lineno="1070"><highlight class="comment">*<sp/><sp/><sp/><sp/>Name<sp/>of<sp/>the<sp/>new<sp/>object</highlight></codeline>
+<codeline lineno="1070"><highlight class="comment">*<sp/><sp/><sp/><sp/>Name<sp/>of<sp/>the<sp/>method</highlight></codeline>
 <codeline lineno="1071"><highlight class="comment">*</highlight></codeline>
-<codeline lineno="1072"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>args</highlight></codeline>
-<codeline lineno="1073"><highlight class="comment">*<sp/><sp/><sp/><sp/>Array<sp/>of<sp/>pointers<sp/>constructor<sp/>parameters</highlight></codeline>
+<codeline lineno="1072"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>ret</highlight></codeline>
+<codeline lineno="1073"><highlight class="comment">*<sp/><sp/><sp/><sp/>Type<sp/>of<sp/>the<sp/>return<sp/>value<sp/>of<sp/>the<sp/>method</highlight></codeline>
 <codeline lineno="1074"><highlight class="comment">*</highlight></codeline>
-<codeline lineno="1075"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>size</highlight></codeline>
-<codeline lineno="1076"><highlight class="comment">*<sp/><sp/><sp/><sp/>Number<sp/>of<sp/>elements<sp/>of<sp/>constructor<sp/>parameters</highlight></codeline>
+<codeline lineno="1075"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>args</highlight></codeline>
+<codeline lineno="1076"><highlight class="comment">*<sp/><sp/><sp/><sp/>Array<sp/>of<sp/>pointers<sp/>to<sp/>data</highlight></codeline>
 <codeline lineno="1077"><highlight class="comment">*</highlight></codeline>
-<codeline lineno="1078"><highlight class="comment">*<sp/><sp/>@return</highlight></codeline>
-<codeline lineno="1079"><highlight class="comment">*<sp/><sp/><sp/><sp/>Pointer<sp/>to<sp/>the<sp/>new<sp/>object<sp/>value<sp/>instance</highlight></codeline>
-<codeline lineno="1080"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="1081"><highlight class="normal">METACALL_API<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<ref refid="metacall_8h_1a3fb7a043355dd7fd9974cea54ff93814" kindref="member">metacall_class_new</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*cls,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*name,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*args[],<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>argc);</highlight></codeline>
-<codeline lineno="1082"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
-<codeline lineno="1083"><highlight class="comment">/**</highlight></codeline>
-<codeline lineno="1084"><highlight class="comment">*<sp/><sp/>@brief</highlight></codeline>
-<codeline lineno="1085"><highlight class="comment">*<sp/><sp/><sp/><sp/>Get<sp/>an<sp/>attribute<sp/>from<sp/>@cls<sp/>by<sp/>@key<sp/>name</highlight></codeline>
-<codeline lineno="1086"><highlight class="comment">*</highlight></codeline>
-<codeline lineno="1087"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>cls</highlight></codeline>
-<codeline lineno="1088"><highlight class="comment">*<sp/><sp/><sp/><sp/>Pointer<sp/>to<sp/>the<sp/>class</highlight></codeline>
+<codeline lineno="1078"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>size</highlight></codeline>
+<codeline lineno="1079"><highlight class="comment">*<sp/><sp/><sp/><sp/>Number<sp/>of<sp/>elements<sp/>of<sp/>args<sp/>array</highlight></codeline>
+<codeline lineno="1080"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="1081"><highlight class="comment">*<sp/><sp/>@return</highlight></codeline>
+<codeline lineno="1082"><highlight class="comment">*<sp/><sp/><sp/><sp/>Pointer<sp/>to<sp/>value<sp/>containing<sp/>the<sp/>result<sp/>of<sp/>the<sp/>call</highlight></codeline>
+<codeline lineno="1083"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="1084"><highlight class="normal">METACALL_API<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<ref refid="metacall_8h_1ac0e15e8ca121a9b0c5b1f22f760d7137" kindref="member">metacallt_class</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*cls,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*name,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="metacall__value_8h_1a09df370b94fa034a58dc8048e14ed34d" kindref="member">metacall_value_id</ref><sp/>ret,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*args[],<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>size);</highlight></codeline>
+<codeline lineno="1085"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="1086"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="1087"><highlight class="comment">*<sp/><sp/>@brief</highlight></codeline>
+<codeline lineno="1088"><highlight class="comment">*<sp/><sp/><sp/><sp/>Create<sp/>a<sp/>new<sp/>object<sp/>instance<sp/>from<sp/>@cls<sp/>by<sp/>value<sp/>array<sp/>@args</highlight></codeline>
 <codeline lineno="1089"><highlight class="comment">*</highlight></codeline>
-<codeline lineno="1090"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>key</highlight></codeline>
-<codeline lineno="1091"><highlight class="comment">*<sp/><sp/><sp/><sp/>Name<sp/>of<sp/>the<sp/>attribute<sp/>to<sp/>get</highlight></codeline>
+<codeline lineno="1090"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>cls</highlight></codeline>
+<codeline lineno="1091"><highlight class="comment">*<sp/><sp/><sp/><sp/>Pointer<sp/>to<sp/>the<sp/>class</highlight></codeline>
 <codeline lineno="1092"><highlight class="comment">*</highlight></codeline>
-<codeline lineno="1093"><highlight class="comment">*<sp/><sp/>@return</highlight></codeline>
-<codeline lineno="1094"><highlight class="comment">*<sp/><sp/><sp/><sp/>Pointer<sp/>to<sp/>the<sp/>class<sp/>attribute<sp/>value<sp/>or<sp/>NULL<sp/>if<sp/>an<sp/>error<sp/>occurred</highlight></codeline>
-<codeline lineno="1095"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="1096"><highlight class="normal">METACALL_API<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<ref refid="metacall_8h_1a70337e2f826dab637d640337404831cf" kindref="member">metacall_class_static_get</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*cls,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*key);</highlight></codeline>
-<codeline lineno="1097"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
-<codeline lineno="1098"><highlight class="comment">/**</highlight></codeline>
-<codeline lineno="1099"><highlight class="comment">*<sp/><sp/>@brief</highlight></codeline>
-<codeline lineno="1100"><highlight class="comment">*<sp/><sp/><sp/><sp/>Set<sp/>an<sp/>attribute<sp/>to<sp/>@cls<sp/>by<sp/>@key<sp/>name</highlight></codeline>
+<codeline lineno="1093"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>name</highlight></codeline>
+<codeline lineno="1094"><highlight class="comment">*<sp/><sp/><sp/><sp/>Name<sp/>of<sp/>the<sp/>new<sp/>object</highlight></codeline>
+<codeline lineno="1095"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="1096"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>args</highlight></codeline>
+<codeline lineno="1097"><highlight class="comment">*<sp/><sp/><sp/><sp/>Array<sp/>of<sp/>pointers<sp/>constructor<sp/>parameters</highlight></codeline>
+<codeline lineno="1098"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="1099"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>size</highlight></codeline>
+<codeline lineno="1100"><highlight class="comment">*<sp/><sp/><sp/><sp/>Number<sp/>of<sp/>elements<sp/>of<sp/>constructor<sp/>parameters</highlight></codeline>
 <codeline lineno="1101"><highlight class="comment">*</highlight></codeline>
-<codeline lineno="1102"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>cls</highlight></codeline>
-<codeline lineno="1103"><highlight class="comment">*<sp/><sp/><sp/><sp/>Pointer<sp/>to<sp/>the<sp/>class</highlight></codeline>
-<codeline lineno="1104"><highlight class="comment">*</highlight></codeline>
-<codeline lineno="1105"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>key</highlight></codeline>
-<codeline lineno="1106"><highlight class="comment">*<sp/><sp/><sp/><sp/>Name<sp/>of<sp/>the<sp/>attribute<sp/>to<sp/>set</highlight></codeline>
-<codeline lineno="1107"><highlight class="comment">*</highlight></codeline>
-<codeline lineno="1108"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>value</highlight></codeline>
-<codeline lineno="1109"><highlight class="comment">*<sp/><sp/><sp/><sp/>Value<sp/>to<sp/>set</highlight></codeline>
+<codeline lineno="1102"><highlight class="comment">*<sp/><sp/>@return</highlight></codeline>
+<codeline lineno="1103"><highlight class="comment">*<sp/><sp/><sp/><sp/>Pointer<sp/>to<sp/>the<sp/>new<sp/>object<sp/>value<sp/>instance</highlight></codeline>
+<codeline lineno="1104"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="1105"><highlight class="normal">METACALL_API<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<ref refid="metacall_8h_1aee922f6a17e2d304c8074342779205c1" kindref="member">metacall_class_new</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*cls,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*name,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*args[],<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>size);</highlight></codeline>
+<codeline lineno="1106"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="1107"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="1108"><highlight class="comment">*<sp/><sp/>@brief</highlight></codeline>
+<codeline lineno="1109"><highlight class="comment">*<sp/><sp/><sp/><sp/>Get<sp/>an<sp/>attribute<sp/>from<sp/>@cls<sp/>by<sp/>@key<sp/>name</highlight></codeline>
 <codeline lineno="1110"><highlight class="comment">*</highlight></codeline>
-<codeline lineno="1111"><highlight class="comment">*<sp/><sp/>@return</highlight></codeline>
-<codeline lineno="1112"><highlight class="comment">*<sp/><sp/><sp/><sp/>Non-zero<sp/>integer<sp/>if<sp/>an<sp/>error<sp/>ocurred</highlight></codeline>
-<codeline lineno="1113"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="1114"><highlight class="normal">METACALL_API<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="metacall_8h_1ad69032d3eec3834b36d907141f32332a" kindref="member">metacall_class_static_set</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*cls,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*key,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*v);</highlight></codeline>
-<codeline lineno="1115"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
-<codeline lineno="1116"><highlight class="comment">/**</highlight></codeline>
-<codeline lineno="1117"><highlight class="comment">*<sp/><sp/>@brief</highlight></codeline>
-<codeline lineno="1118"><highlight class="comment">*<sp/><sp/><sp/><sp/>Call<sp/>an<sp/>object<sp/>method<sp/>anonymously<sp/>by<sp/>value<sp/>array<sp/>@args</highlight></codeline>
-<codeline lineno="1119"><highlight class="comment">*</highlight></codeline>
-<codeline lineno="1120"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>obj</highlight></codeline>
-<codeline lineno="1121"><highlight class="comment">*<sp/><sp/><sp/><sp/>Pointer<sp/>to<sp/>the<sp/>object</highlight></codeline>
-<codeline lineno="1122"><highlight class="comment">*</highlight></codeline>
-<codeline lineno="1123"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>name</highlight></codeline>
-<codeline lineno="1124"><highlight class="comment">*<sp/><sp/><sp/><sp/>Name<sp/>of<sp/>the<sp/>method</highlight></codeline>
+<codeline lineno="1111"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>cls</highlight></codeline>
+<codeline lineno="1112"><highlight class="comment">*<sp/><sp/><sp/><sp/>Pointer<sp/>to<sp/>the<sp/>class</highlight></codeline>
+<codeline lineno="1113"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="1114"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>key</highlight></codeline>
+<codeline lineno="1115"><highlight class="comment">*<sp/><sp/><sp/><sp/>Name<sp/>of<sp/>the<sp/>attribute<sp/>to<sp/>get</highlight></codeline>
+<codeline lineno="1116"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="1117"><highlight class="comment">*<sp/><sp/>@return</highlight></codeline>
+<codeline lineno="1118"><highlight class="comment">*<sp/><sp/><sp/><sp/>Pointer<sp/>to<sp/>the<sp/>class<sp/>attribute<sp/>value<sp/>or<sp/>NULL<sp/>if<sp/>an<sp/>error<sp/>occurred</highlight></codeline>
+<codeline lineno="1119"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="1120"><highlight class="normal">METACALL_API<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<ref refid="metacall_8h_1a70337e2f826dab637d640337404831cf" kindref="member">metacall_class_static_get</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*cls,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*key);</highlight></codeline>
+<codeline lineno="1121"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="1122"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="1123"><highlight class="comment">*<sp/><sp/>@brief</highlight></codeline>
+<codeline lineno="1124"><highlight class="comment">*<sp/><sp/><sp/><sp/>Set<sp/>an<sp/>attribute<sp/>to<sp/>@cls<sp/>by<sp/>@key<sp/>name</highlight></codeline>
 <codeline lineno="1125"><highlight class="comment">*</highlight></codeline>
-<codeline lineno="1126"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>args</highlight></codeline>
-<codeline lineno="1127"><highlight class="comment">*<sp/><sp/><sp/><sp/>Array<sp/>of<sp/>pointers<sp/>to<sp/>data</highlight></codeline>
+<codeline lineno="1126"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>cls</highlight></codeline>
+<codeline lineno="1127"><highlight class="comment">*<sp/><sp/><sp/><sp/>Pointer<sp/>to<sp/>the<sp/>class</highlight></codeline>
 <codeline lineno="1128"><highlight class="comment">*</highlight></codeline>
-<codeline lineno="1129"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>size</highlight></codeline>
-<codeline lineno="1130"><highlight class="comment">*<sp/><sp/><sp/><sp/>Number<sp/>of<sp/>elements<sp/>of<sp/>args<sp/>array</highlight></codeline>
+<codeline lineno="1129"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>key</highlight></codeline>
+<codeline lineno="1130"><highlight class="comment">*<sp/><sp/><sp/><sp/>Name<sp/>of<sp/>the<sp/>attribute<sp/>to<sp/>set</highlight></codeline>
 <codeline lineno="1131"><highlight class="comment">*</highlight></codeline>
-<codeline lineno="1132"><highlight class="comment">*<sp/><sp/>@return</highlight></codeline>
-<codeline lineno="1133"><highlight class="comment">*<sp/><sp/><sp/><sp/>Pointer<sp/>to<sp/>value<sp/>containing<sp/>the<sp/>result<sp/>of<sp/>the<sp/>call</highlight></codeline>
-<codeline lineno="1134"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="1135"><highlight class="normal">METACALL_API<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<ref refid="metacall_8h_1a84679047389d04a406f1e3a91fa00e1d" kindref="member">metacallv_object</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*obj,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*name,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*args[],<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>argc);</highlight></codeline>
-<codeline lineno="1136"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
-<codeline lineno="1137"><highlight class="comment">/**</highlight></codeline>
-<codeline lineno="1138"><highlight class="comment">*<sp/><sp/>@brief</highlight></codeline>
-<codeline lineno="1139"><highlight class="comment">*<sp/><sp/><sp/><sp/>Get<sp/>an<sp/>attribute<sp/>from<sp/>@obj<sp/>by<sp/>@key<sp/>name</highlight></codeline>
-<codeline lineno="1140"><highlight class="comment">*</highlight></codeline>
-<codeline lineno="1141"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>obj</highlight></codeline>
-<codeline lineno="1142"><highlight class="comment">*<sp/><sp/><sp/><sp/>Pointer<sp/>to<sp/>the<sp/>object</highlight></codeline>
+<codeline lineno="1132"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>value</highlight></codeline>
+<codeline lineno="1133"><highlight class="comment">*<sp/><sp/><sp/><sp/>Value<sp/>to<sp/>set</highlight></codeline>
+<codeline lineno="1134"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="1135"><highlight class="comment">*<sp/><sp/>@return</highlight></codeline>
+<codeline lineno="1136"><highlight class="comment">*<sp/><sp/><sp/><sp/>Non-zero<sp/>integer<sp/>if<sp/>an<sp/>error<sp/>ocurred</highlight></codeline>
+<codeline lineno="1137"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="1138"><highlight class="normal">METACALL_API<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="metacall_8h_1ad69032d3eec3834b36d907141f32332a" kindref="member">metacall_class_static_set</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*cls,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*key,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*v);</highlight></codeline>
+<codeline lineno="1139"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="1140"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="1141"><highlight class="comment">*<sp/><sp/>@brief</highlight></codeline>
+<codeline lineno="1142"><highlight class="comment">*<sp/><sp/><sp/><sp/>Call<sp/>an<sp/>object<sp/>method<sp/>anonymously<sp/>by<sp/>value<sp/>array<sp/>@args</highlight></codeline>
 <codeline lineno="1143"><highlight class="comment">*</highlight></codeline>
-<codeline lineno="1144"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>key</highlight></codeline>
-<codeline lineno="1145"><highlight class="comment">*<sp/><sp/><sp/><sp/>Name<sp/>of<sp/>the<sp/>attribute<sp/>to<sp/>get</highlight></codeline>
+<codeline lineno="1144"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>obj</highlight></codeline>
+<codeline lineno="1145"><highlight class="comment">*<sp/><sp/><sp/><sp/>Pointer<sp/>to<sp/>the<sp/>object</highlight></codeline>
 <codeline lineno="1146"><highlight class="comment">*</highlight></codeline>
-<codeline lineno="1147"><highlight class="comment">*<sp/><sp/>@return</highlight></codeline>
-<codeline lineno="1148"><highlight class="comment">*<sp/><sp/><sp/><sp/>Pointer<sp/>to<sp/>the<sp/>object<sp/>attribute<sp/>value<sp/>or<sp/>NULL<sp/>if<sp/>an<sp/>error<sp/>occurred</highlight></codeline>
-<codeline lineno="1149"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="1150"><highlight class="normal">METACALL_API<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<ref refid="metacall_8h_1abf765af19df6abca9ef981ed56db6b92" kindref="member">metacall_object_get</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*obj,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*key);</highlight></codeline>
-<codeline lineno="1151"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
-<codeline lineno="1152"><highlight class="comment">/**</highlight></codeline>
-<codeline lineno="1153"><highlight class="comment">*<sp/><sp/>@brief</highlight></codeline>
-<codeline lineno="1154"><highlight class="comment">*<sp/><sp/><sp/><sp/>Set<sp/>an<sp/>attribute<sp/>to<sp/>@obj<sp/>by<sp/>@key<sp/>name</highlight></codeline>
+<codeline lineno="1147"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>name</highlight></codeline>
+<codeline lineno="1148"><highlight class="comment">*<sp/><sp/><sp/><sp/>Name<sp/>of<sp/>the<sp/>method</highlight></codeline>
+<codeline lineno="1149"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="1150"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>args</highlight></codeline>
+<codeline lineno="1151"><highlight class="comment">*<sp/><sp/><sp/><sp/>Array<sp/>of<sp/>pointers<sp/>to<sp/>data</highlight></codeline>
+<codeline lineno="1152"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="1153"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>size</highlight></codeline>
+<codeline lineno="1154"><highlight class="comment">*<sp/><sp/><sp/><sp/>Number<sp/>of<sp/>elements<sp/>of<sp/>args<sp/>array</highlight></codeline>
 <codeline lineno="1155"><highlight class="comment">*</highlight></codeline>
-<codeline lineno="1156"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>obj</highlight></codeline>
-<codeline lineno="1157"><highlight class="comment">*<sp/><sp/><sp/><sp/>Pointer<sp/>to<sp/>the<sp/>object</highlight></codeline>
-<codeline lineno="1158"><highlight class="comment">*</highlight></codeline>
-<codeline lineno="1159"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>key</highlight></codeline>
-<codeline lineno="1160"><highlight class="comment">*<sp/><sp/><sp/><sp/>Name<sp/>of<sp/>the<sp/>attribute<sp/>to<sp/>set</highlight></codeline>
-<codeline lineno="1161"><highlight class="comment">*</highlight></codeline>
-<codeline lineno="1162"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>value</highlight></codeline>
-<codeline lineno="1163"><highlight class="comment">*<sp/><sp/><sp/><sp/>Value<sp/>to<sp/>set</highlight></codeline>
+<codeline lineno="1156"><highlight class="comment">*<sp/><sp/>@return</highlight></codeline>
+<codeline lineno="1157"><highlight class="comment">*<sp/><sp/><sp/><sp/>Pointer<sp/>to<sp/>value<sp/>containing<sp/>the<sp/>result<sp/>of<sp/>the<sp/>call</highlight></codeline>
+<codeline lineno="1158"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="1159"><highlight class="normal">METACALL_API<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<ref refid="metacall_8h_1a1b346165cc3e9d4c958bf92c65f71ef5" kindref="member">metacallv_object</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*obj,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*name,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*args[],<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>size);</highlight></codeline>
+<codeline lineno="1160"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="1161"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="1162"><highlight class="comment">*<sp/><sp/>@brief</highlight></codeline>
+<codeline lineno="1163"><highlight class="comment">*<sp/><sp/><sp/><sp/>Call<sp/>a<sp/>object<sp/>method<sp/>anonymously<sp/>by<sp/>value<sp/>array<sp/>@args<sp/>and<sp/>return<sp/>value<sp/>type<sp/>@ret<sp/>(helps<sp/>to<sp/>resolve<sp/>overloading<sp/>methods)</highlight></codeline>
 <codeline lineno="1164"><highlight class="comment">*</highlight></codeline>
-<codeline lineno="1165"><highlight class="comment">*<sp/><sp/>@return</highlight></codeline>
-<codeline lineno="1166"><highlight class="comment">*<sp/><sp/><sp/><sp/>Non-zero<sp/>integer<sp/>if<sp/>an<sp/>error<sp/>ocurred</highlight></codeline>
-<codeline lineno="1167"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="1168"><highlight class="normal">METACALL_API<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="metacall_8h_1a567cbdd3c398e4bcfab8e07ff76de06b" kindref="member">metacall_object_set</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*obj,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*key,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*v);</highlight></codeline>
-<codeline lineno="1169"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
-<codeline lineno="1170"><highlight class="comment">/**</highlight></codeline>
-<codeline lineno="1171"><highlight class="comment">*<sp/><sp/>@brief</highlight></codeline>
-<codeline lineno="1172"><highlight class="comment">*<sp/><sp/><sp/><sp/>Provide<sp/>information<sp/>about<sp/>all<sp/>loaded<sp/>objects</highlight></codeline>
+<codeline lineno="1165"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>obj</highlight></codeline>
+<codeline lineno="1166"><highlight class="comment">*<sp/><sp/><sp/><sp/>Pointer<sp/>to<sp/>the<sp/>object</highlight></codeline>
+<codeline lineno="1167"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="1168"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>name</highlight></codeline>
+<codeline lineno="1169"><highlight class="comment">*<sp/><sp/><sp/><sp/>Name<sp/>of<sp/>the<sp/>method</highlight></codeline>
+<codeline lineno="1170"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="1171"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>ret</highlight></codeline>
+<codeline lineno="1172"><highlight class="comment">*<sp/><sp/><sp/><sp/>Type<sp/>of<sp/>the<sp/>return<sp/>value<sp/>of<sp/>the<sp/>method</highlight></codeline>
 <codeline lineno="1173"><highlight class="comment">*</highlight></codeline>
-<codeline lineno="1174"><highlight class="comment">*<sp/><sp/>@param[out]<sp/>size</highlight></codeline>
-<codeline lineno="1175"><highlight class="comment">*<sp/><sp/><sp/><sp/>Size<sp/>in<sp/>bytes<sp/>of<sp/>return<sp/>buffer</highlight></codeline>
+<codeline lineno="1174"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>args</highlight></codeline>
+<codeline lineno="1175"><highlight class="comment">*<sp/><sp/><sp/><sp/>Array<sp/>of<sp/>pointers<sp/>to<sp/>data</highlight></codeline>
 <codeline lineno="1176"><highlight class="comment">*</highlight></codeline>
-<codeline lineno="1177"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>allocator</highlight></codeline>
-<codeline lineno="1178"><highlight class="comment">*<sp/><sp/><sp/><sp/>Pointer<sp/>to<sp/>allocator<sp/>will<sp/>allocate<sp/>the<sp/>string</highlight></codeline>
+<codeline lineno="1177"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>size</highlight></codeline>
+<codeline lineno="1178"><highlight class="comment">*<sp/><sp/><sp/><sp/>Number<sp/>of<sp/>elements<sp/>of<sp/>args<sp/>array</highlight></codeline>
 <codeline lineno="1179"><highlight class="comment">*</highlight></codeline>
 <codeline lineno="1180"><highlight class="comment">*<sp/><sp/>@return</highlight></codeline>
-<codeline lineno="1181"><highlight class="comment">*<sp/><sp/><sp/><sp/>String<sp/>containing<sp/>introspection<sp/>information</highlight></codeline>
+<codeline lineno="1181"><highlight class="comment">*<sp/><sp/><sp/><sp/>Pointer<sp/>to<sp/>value<sp/>containing<sp/>the<sp/>result<sp/>of<sp/>the<sp/>call</highlight></codeline>
 <codeline lineno="1182"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="1183"><highlight class="normal">METACALL_API<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="metacall_8h_1ab9d6a8fa4d186f14741ef15015798eb0" kindref="member">metacall_inspect</ref>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>*size,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*allocator);</highlight></codeline>
+<codeline lineno="1183"><highlight class="normal">METACALL_API<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<ref refid="metacall_8h_1a1391d4d2e8f9dc919ecb6ce5ac00916f" kindref="member">metacallt_object</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*obj,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*name,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="metacall__value_8h_1a09df370b94fa034a58dc8048e14ed34d" kindref="member">metacall_value_id</ref><sp/>ret,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*args[],<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>size);</highlight></codeline>
 <codeline lineno="1184"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
 <codeline lineno="1185"><highlight class="comment">/**</highlight></codeline>
 <codeline lineno="1186"><highlight class="comment">*<sp/><sp/>@brief</highlight></codeline>
-<codeline lineno="1187"><highlight class="comment">*<sp/><sp/><sp/><sp/>Convert<sp/>the<sp/>value<sp/>@v<sp/>to<sp/>serialized<sp/>string</highlight></codeline>
+<codeline lineno="1187"><highlight class="comment">*<sp/><sp/><sp/><sp/>Get<sp/>an<sp/>attribute<sp/>from<sp/>@obj<sp/>by<sp/>@key<sp/>name</highlight></codeline>
 <codeline lineno="1188"><highlight class="comment">*</highlight></codeline>
-<codeline lineno="1189"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>name</highlight></codeline>
-<codeline lineno="1190"><highlight class="comment">*<sp/><sp/><sp/><sp/>Name<sp/>of<sp/>the<sp/>serial<sp/>to<sp/>be<sp/>used</highlight></codeline>
+<codeline lineno="1189"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>obj</highlight></codeline>
+<codeline lineno="1190"><highlight class="comment">*<sp/><sp/><sp/><sp/>Pointer<sp/>to<sp/>the<sp/>object</highlight></codeline>
 <codeline lineno="1191"><highlight class="comment">*</highlight></codeline>
-<codeline lineno="1192"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>v</highlight></codeline>
-<codeline lineno="1193"><highlight class="comment">*<sp/><sp/><sp/><sp/>Reference<sp/>to<sp/>the<sp/>value</highlight></codeline>
+<codeline lineno="1192"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>key</highlight></codeline>
+<codeline lineno="1193"><highlight class="comment">*<sp/><sp/><sp/><sp/>Name<sp/>of<sp/>the<sp/>attribute<sp/>to<sp/>get</highlight></codeline>
 <codeline lineno="1194"><highlight class="comment">*</highlight></codeline>
-<codeline lineno="1195"><highlight class="comment">*<sp/><sp/>@param[out]<sp/>size</highlight></codeline>
-<codeline lineno="1196"><highlight class="comment">*<sp/><sp/><sp/><sp/>Size<sp/>of<sp/>new<sp/>allocated<sp/>string</highlight></codeline>
-<codeline lineno="1197"><highlight class="comment">*</highlight></codeline>
-<codeline lineno="1198"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>allocator</highlight></codeline>
-<codeline lineno="1199"><highlight class="comment">*<sp/><sp/><sp/><sp/>Pointer<sp/>to<sp/>allocator<sp/>will<sp/>allocate<sp/>the<sp/>string</highlight></codeline>
-<codeline lineno="1200"><highlight class="comment">*</highlight></codeline>
-<codeline lineno="1201"><highlight class="comment">*<sp/><sp/>@return</highlight></codeline>
-<codeline lineno="1202"><highlight class="comment">*<sp/><sp/><sp/><sp/>New<sp/>allocated<sp/>string<sp/>containing<sp/>stringified<sp/>value</highlight></codeline>
-<codeline lineno="1203"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="1204"><highlight class="normal">METACALL_API<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="metacall_8h_1acdcbeeeafdc83e9b69937265a0da53c3" kindref="member">metacall_serialize</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*name,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*v,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>*size,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*allocator);</highlight></codeline>
-<codeline lineno="1205"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
-<codeline lineno="1206"><highlight class="comment">/**</highlight></codeline>
-<codeline lineno="1207"><highlight class="comment">*<sp/><sp/>@brief</highlight></codeline>
-<codeline lineno="1208"><highlight class="comment">*<sp/><sp/><sp/><sp/>Convert<sp/>the<sp/>string<sp/>@buffer<sp/>to<sp/>value</highlight></codeline>
+<codeline lineno="1195"><highlight class="comment">*<sp/><sp/>@return</highlight></codeline>
+<codeline lineno="1196"><highlight class="comment">*<sp/><sp/><sp/><sp/>Pointer<sp/>to<sp/>the<sp/>object<sp/>attribute<sp/>value<sp/>or<sp/>NULL<sp/>if<sp/>an<sp/>error<sp/>occurred</highlight></codeline>
+<codeline lineno="1197"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="1198"><highlight class="normal">METACALL_API<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<ref refid="metacall_8h_1abf765af19df6abca9ef981ed56db6b92" kindref="member">metacall_object_get</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*obj,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*key);</highlight></codeline>
+<codeline lineno="1199"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="1200"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="1201"><highlight class="comment">*<sp/><sp/>@brief</highlight></codeline>
+<codeline lineno="1202"><highlight class="comment">*<sp/><sp/><sp/><sp/>Set<sp/>an<sp/>attribute<sp/>to<sp/>@obj<sp/>by<sp/>@key<sp/>name</highlight></codeline>
+<codeline lineno="1203"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="1204"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>obj</highlight></codeline>
+<codeline lineno="1205"><highlight class="comment">*<sp/><sp/><sp/><sp/>Pointer<sp/>to<sp/>the<sp/>object</highlight></codeline>
+<codeline lineno="1206"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="1207"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>key</highlight></codeline>
+<codeline lineno="1208"><highlight class="comment">*<sp/><sp/><sp/><sp/>Name<sp/>of<sp/>the<sp/>attribute<sp/>to<sp/>set</highlight></codeline>
 <codeline lineno="1209"><highlight class="comment">*</highlight></codeline>
-<codeline lineno="1210"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>name</highlight></codeline>
-<codeline lineno="1211"><highlight class="comment">*<sp/><sp/><sp/><sp/>Name<sp/>of<sp/>the<sp/>serial<sp/>to<sp/>be<sp/>used</highlight></codeline>
+<codeline lineno="1210"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>value</highlight></codeline>
+<codeline lineno="1211"><highlight class="comment">*<sp/><sp/><sp/><sp/>Value<sp/>to<sp/>set</highlight></codeline>
 <codeline lineno="1212"><highlight class="comment">*</highlight></codeline>
-<codeline lineno="1213"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>buffer</highlight></codeline>
-<codeline lineno="1214"><highlight class="comment">*<sp/><sp/><sp/><sp/>String<sp/>to<sp/>be<sp/>deserialized</highlight></codeline>
-<codeline lineno="1215"><highlight class="comment">*</highlight></codeline>
-<codeline lineno="1216"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>size</highlight></codeline>
-<codeline lineno="1217"><highlight class="comment">*<sp/><sp/><sp/><sp/>Size<sp/>of<sp/>string<sp/>@buffer</highlight></codeline>
-<codeline lineno="1218"><highlight class="comment">*</highlight></codeline>
-<codeline lineno="1219"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>allocator</highlight></codeline>
-<codeline lineno="1220"><highlight class="comment">*<sp/><sp/><sp/><sp/>Pointer<sp/>to<sp/>allocator<sp/>will<sp/>allocate<sp/>the<sp/>value</highlight></codeline>
+<codeline lineno="1213"><highlight class="comment">*<sp/><sp/>@return</highlight></codeline>
+<codeline lineno="1214"><highlight class="comment">*<sp/><sp/><sp/><sp/>Non-zero<sp/>integer<sp/>if<sp/>an<sp/>error<sp/>ocurred</highlight></codeline>
+<codeline lineno="1215"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="1216"><highlight class="normal">METACALL_API<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="metacall_8h_1a567cbdd3c398e4bcfab8e07ff76de06b" kindref="member">metacall_object_set</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*obj,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*key,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*v);</highlight></codeline>
+<codeline lineno="1217"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="1218"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="1219"><highlight class="comment">*<sp/><sp/>@brief</highlight></codeline>
+<codeline lineno="1220"><highlight class="comment">*<sp/><sp/><sp/><sp/>Provide<sp/>information<sp/>about<sp/>all<sp/>loaded<sp/>objects</highlight></codeline>
 <codeline lineno="1221"><highlight class="comment">*</highlight></codeline>
-<codeline lineno="1222"><highlight class="comment">*<sp/><sp/>@return</highlight></codeline>
-<codeline lineno="1223"><highlight class="comment">*<sp/><sp/><sp/><sp/>New<sp/>allocated<sp/>value<sp/>representing<sp/>the<sp/>string<sp/>(must<sp/>be<sp/>freed)</highlight></codeline>
-<codeline lineno="1224"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="1225"><highlight class="normal">METACALL_API<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<ref refid="metacall_8h_1a0d45c99a4491e8bbad9d66aa8e719e54" kindref="member">metacall_deserialize</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*name,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*buffer,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>size,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*allocator);</highlight></codeline>
-<codeline lineno="1226"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
-<codeline lineno="1227"><highlight class="comment">/**</highlight></codeline>
-<codeline lineno="1228"><highlight class="comment">*<sp/><sp/>@brief</highlight></codeline>
-<codeline lineno="1229"><highlight class="comment">*<sp/><sp/><sp/><sp/>Clear<sp/>handle<sp/>from<sp/>memory<sp/>and<sp/>unload<sp/>related<sp/>resources</highlight></codeline>
-<codeline lineno="1230"><highlight class="comment">*</highlight></codeline>
-<codeline lineno="1231"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>handle</highlight></codeline>
-<codeline lineno="1232"><highlight class="comment">*<sp/><sp/><sp/><sp/>Reference<sp/>to<sp/>the<sp/>handle<sp/>to<sp/>be<sp/>unloaded</highlight></codeline>
-<codeline lineno="1233"><highlight class="comment">*</highlight></codeline>
-<codeline lineno="1234"><highlight class="comment">*<sp/><sp/>@return</highlight></codeline>
-<codeline lineno="1235"><highlight class="comment">*<sp/><sp/><sp/><sp/>Zero<sp/>if<sp/>success,<sp/>different<sp/>from<sp/>zero<sp/>otherwise</highlight></codeline>
-<codeline lineno="1236"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="1237"><highlight class="normal">METACALL_API<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="metacall_8h_1ae1f35c9c5cd2b375e8fb00b9d8c5890c" kindref="member">metacall_clear</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*handle);</highlight></codeline>
-<codeline lineno="1238"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
-<codeline lineno="1239"><highlight class="comment">/**</highlight></codeline>
-<codeline lineno="1240"><highlight class="comment">*<sp/><sp/>@brief</highlight></codeline>
-<codeline lineno="1241"><highlight class="comment">*<sp/><sp/><sp/><sp/>Destroy<sp/>MetaCall<sp/>library</highlight></codeline>
+<codeline lineno="1222"><highlight class="comment">*<sp/><sp/>@param[out]<sp/>size</highlight></codeline>
+<codeline lineno="1223"><highlight class="comment">*<sp/><sp/><sp/><sp/>Size<sp/>in<sp/>bytes<sp/>of<sp/>return<sp/>buffer</highlight></codeline>
+<codeline lineno="1224"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="1225"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>allocator</highlight></codeline>
+<codeline lineno="1226"><highlight class="comment">*<sp/><sp/><sp/><sp/>Pointer<sp/>to<sp/>allocator<sp/>will<sp/>allocate<sp/>the<sp/>string</highlight></codeline>
+<codeline lineno="1227"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="1228"><highlight class="comment">*<sp/><sp/>@return</highlight></codeline>
+<codeline lineno="1229"><highlight class="comment">*<sp/><sp/><sp/><sp/>String<sp/>containing<sp/>introspection<sp/>information</highlight></codeline>
+<codeline lineno="1230"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="1231"><highlight class="normal">METACALL_API<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="metacall_8h_1ab9d6a8fa4d186f14741ef15015798eb0" kindref="member">metacall_inspect</ref>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>*size,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*allocator);</highlight></codeline>
+<codeline lineno="1232"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="1233"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="1234"><highlight class="comment">*<sp/><sp/>@brief</highlight></codeline>
+<codeline lineno="1235"><highlight class="comment">*<sp/><sp/><sp/><sp/>Convert<sp/>the<sp/>value<sp/>@v<sp/>to<sp/>serialized<sp/>string</highlight></codeline>
+<codeline lineno="1236"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="1237"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>name</highlight></codeline>
+<codeline lineno="1238"><highlight class="comment">*<sp/><sp/><sp/><sp/>Name<sp/>of<sp/>the<sp/>serial<sp/>to<sp/>be<sp/>used</highlight></codeline>
+<codeline lineno="1239"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="1240"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>v</highlight></codeline>
+<codeline lineno="1241"><highlight class="comment">*<sp/><sp/><sp/><sp/>Reference<sp/>to<sp/>the<sp/>value</highlight></codeline>
 <codeline lineno="1242"><highlight class="comment">*</highlight></codeline>
-<codeline lineno="1243"><highlight class="comment">*<sp/><sp/>@return</highlight></codeline>
-<codeline lineno="1244"><highlight class="comment">*<sp/><sp/><sp/><sp/>Zero<sp/>if<sp/>success,<sp/>different<sp/>from<sp/>zero<sp/>otherwise</highlight></codeline>
-<codeline lineno="1245"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="1246"><highlight class="normal">METACALL_API<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="metacall_8h_1aca8745a9f261bc3d37ee9156b991296f" kindref="member">metacall_destroy</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="1247"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
-<codeline lineno="1248"><highlight class="comment">/**</highlight></codeline>
-<codeline lineno="1249"><highlight class="comment">*<sp/><sp/>@brief</highlight></codeline>
-<codeline lineno="1250"><highlight class="comment">*<sp/><sp/><sp/><sp/>Provide<sp/>the<sp/>module<sp/>information</highlight></codeline>
-<codeline lineno="1251"><highlight class="comment">*</highlight></codeline>
-<codeline lineno="1252"><highlight class="comment">*<sp/><sp/>@return</highlight></codeline>
-<codeline lineno="1253"><highlight class="comment">*<sp/><sp/><sp/><sp/>Static<sp/>string<sp/>containing<sp/>module<sp/>information</highlight></codeline>
-<codeline lineno="1254"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="1255"><highlight class="normal">METACALL_API<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="metacall_8h_1a1e8b06591a5564cfa4f1209e84ad5e78" kindref="member">metacall_print_info</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="1256"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1257"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="1258"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="1259"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="1260"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1261"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>METACALL_H<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+<codeline lineno="1243"><highlight class="comment">*<sp/><sp/>@param[out]<sp/>size</highlight></codeline>
+<codeline lineno="1244"><highlight class="comment">*<sp/><sp/><sp/><sp/>Size<sp/>of<sp/>new<sp/>allocated<sp/>string</highlight></codeline>
+<codeline lineno="1245"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="1246"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>allocator</highlight></codeline>
+<codeline lineno="1247"><highlight class="comment">*<sp/><sp/><sp/><sp/>Pointer<sp/>to<sp/>allocator<sp/>will<sp/>allocate<sp/>the<sp/>string</highlight></codeline>
+<codeline lineno="1248"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="1249"><highlight class="comment">*<sp/><sp/>@return</highlight></codeline>
+<codeline lineno="1250"><highlight class="comment">*<sp/><sp/><sp/><sp/>New<sp/>allocated<sp/>string<sp/>containing<sp/>stringified<sp/>value</highlight></codeline>
+<codeline lineno="1251"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="1252"><highlight class="normal">METACALL_API<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="metacall_8h_1acdcbeeeafdc83e9b69937265a0da53c3" kindref="member">metacall_serialize</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*name,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*v,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>*size,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*allocator);</highlight></codeline>
+<codeline lineno="1253"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="1254"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="1255"><highlight class="comment">*<sp/><sp/>@brief</highlight></codeline>
+<codeline lineno="1256"><highlight class="comment">*<sp/><sp/><sp/><sp/>Convert<sp/>the<sp/>string<sp/>@buffer<sp/>to<sp/>value</highlight></codeline>
+<codeline lineno="1257"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="1258"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>name</highlight></codeline>
+<codeline lineno="1259"><highlight class="comment">*<sp/><sp/><sp/><sp/>Name<sp/>of<sp/>the<sp/>serial<sp/>to<sp/>be<sp/>used</highlight></codeline>
+<codeline lineno="1260"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="1261"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>buffer</highlight></codeline>
+<codeline lineno="1262"><highlight class="comment">*<sp/><sp/><sp/><sp/>String<sp/>to<sp/>be<sp/>deserialized</highlight></codeline>
+<codeline lineno="1263"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="1264"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>size</highlight></codeline>
+<codeline lineno="1265"><highlight class="comment">*<sp/><sp/><sp/><sp/>Size<sp/>of<sp/>string<sp/>@buffer</highlight></codeline>
+<codeline lineno="1266"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="1267"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>allocator</highlight></codeline>
+<codeline lineno="1268"><highlight class="comment">*<sp/><sp/><sp/><sp/>Pointer<sp/>to<sp/>allocator<sp/>will<sp/>allocate<sp/>the<sp/>value</highlight></codeline>
+<codeline lineno="1269"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="1270"><highlight class="comment">*<sp/><sp/>@return</highlight></codeline>
+<codeline lineno="1271"><highlight class="comment">*<sp/><sp/><sp/><sp/>New<sp/>allocated<sp/>value<sp/>representing<sp/>the<sp/>string<sp/>(must<sp/>be<sp/>freed)</highlight></codeline>
+<codeline lineno="1272"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="1273"><highlight class="normal">METACALL_API<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<ref refid="metacall_8h_1a0d45c99a4491e8bbad9d66aa8e719e54" kindref="member">metacall_deserialize</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*name,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*buffer,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>size,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*allocator);</highlight></codeline>
+<codeline lineno="1274"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="1275"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="1276"><highlight class="comment">*<sp/><sp/>@brief</highlight></codeline>
+<codeline lineno="1277"><highlight class="comment">*<sp/><sp/><sp/><sp/>Clear<sp/>handle<sp/>from<sp/>memory<sp/>and<sp/>unload<sp/>related<sp/>resources</highlight></codeline>
+<codeline lineno="1278"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="1279"><highlight class="comment">*<sp/><sp/>@param[in]<sp/>handle</highlight></codeline>
+<codeline lineno="1280"><highlight class="comment">*<sp/><sp/><sp/><sp/>Reference<sp/>to<sp/>the<sp/>handle<sp/>to<sp/>be<sp/>unloaded</highlight></codeline>
+<codeline lineno="1281"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="1282"><highlight class="comment">*<sp/><sp/>@return</highlight></codeline>
+<codeline lineno="1283"><highlight class="comment">*<sp/><sp/><sp/><sp/>Zero<sp/>if<sp/>success,<sp/>different<sp/>from<sp/>zero<sp/>otherwise</highlight></codeline>
+<codeline lineno="1284"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="1285"><highlight class="normal">METACALL_API<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="metacall_8h_1ae1f35c9c5cd2b375e8fb00b9d8c5890c" kindref="member">metacall_clear</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*handle);</highlight></codeline>
+<codeline lineno="1286"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="1287"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="1288"><highlight class="comment">*<sp/><sp/>@brief</highlight></codeline>
+<codeline lineno="1289"><highlight class="comment">*<sp/><sp/><sp/><sp/>Destroy<sp/>MetaCall<sp/>library</highlight></codeline>
+<codeline lineno="1290"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="1291"><highlight class="comment">*<sp/><sp/>@return</highlight></codeline>
+<codeline lineno="1292"><highlight class="comment">*<sp/><sp/><sp/><sp/>Zero<sp/>if<sp/>success,<sp/>different<sp/>from<sp/>zero<sp/>otherwise</highlight></codeline>
+<codeline lineno="1293"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="1294"><highlight class="normal">METACALL_API<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="metacall_8h_1aca8745a9f261bc3d37ee9156b991296f" kindref="member">metacall_destroy</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="1295"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="1296"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="1297"><highlight class="comment">*<sp/><sp/>@brief</highlight></codeline>
+<codeline lineno="1298"><highlight class="comment">*<sp/><sp/><sp/><sp/>Provide<sp/>the<sp/>module<sp/>information</highlight></codeline>
+<codeline lineno="1299"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="1300"><highlight class="comment">*<sp/><sp/>@return</highlight></codeline>
+<codeline lineno="1301"><highlight class="comment">*<sp/><sp/><sp/><sp/>Static<sp/>string<sp/>containing<sp/>module<sp/>information</highlight></codeline>
+<codeline lineno="1302"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="1303"><highlight class="normal">METACALL_API<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="metacall_8h_1a1e8b06591a5564cfa4f1209e84ad5e78" kindref="member">metacall_print_info</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="1304"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1305"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="1306"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="1307"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="1308"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1309"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>METACALL_H<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/landing-page/landing-page/core/source/metacall/include/metacall/metacall.h"/>
   </compounddef>

@@ -1,5 +1,8 @@
 var annotated_dup =
 [
+    [ "accessor_type", "structaccessor__type.html", "structaccessor__type" ],
+    [ "attribute_interface", "structattribute__interface__type.html", "structattribute__interface__type" ],
+    [ "bucket", "structbucket__type.html", "structbucket__type" ],
     [ "class_interface", "structclass__interface__type.html", "structclass__interface__type" ],
     [ "detour_interface", "structdetour__interface__type.html", "structdetour__interface__type" ],
     [ "dynlink_impl_interface", "structdynlink__impl__interface__type.html", "structdynlink__impl__interface__type" ],
@@ -54,8 +57,8 @@ var annotated_dup =
     [ "metacall_log_socket", "structmetacall__log__socket__type.html", "structmetacall__log__socket__type" ],
     [ "metacall_log_stdio", "structmetacall__log__stdio__type.html", "structmetacall__log__stdio__type" ],
     [ "metacall_log_syslog", "structmetacall__log__syslog__type.html", "structmetacall__log__syslog__type" ],
+    [ "method_interface", "structmethod__interface__type.html", "structmethod__interface__type" ],
     [ "object_interface", "structobject__interface__type.html", "structobject__interface__type" ],
-    [ "set_bucket", "structset__bucket__type.html", "structset__bucket__type" ],
-    [ "set_pair", "structset__pair__type.html", "structset__pair__type" ],
+    [ "pair", "structpair__type.html", "structpair__type" ],
     [ "type_interface", "structtype__interface__type.html", "structtype__interface__type" ]
 ];
