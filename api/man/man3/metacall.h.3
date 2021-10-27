@@ -1,4 +1,4 @@
-.TH "metacall.h" 3 "Mon Oct 18 2021" "Version 0.1.0.50b1ed9f169d" "MetaCall" \" -*- nroff -*-
+.TH "metacall.h" 3 "Wed Oct 27 2021" "Version 0.1.0.44b1ab3b98a6" "MetaCall" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -27,12 +27,22 @@ metacall.h
 .ti -1c
 .RI "struct \fBmetacall_initialize_configuration_type\fP"
 .br
+.ti -1c
+.RI "struct \fBmetacall_await_callbacks_type\fP"
+.br
 .in -1c
 .SS "Macros"
 
 .in +1c
 .ti -1c
 .RI "#define \fBMETACALL_FLAGS_FORK_SAFE\fP   0x01 << 0x00"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef void *(* \fBmetacall_await_callback\fP) (void *, void *)"
 .br
 .in -1c
 .SS "Functions"
@@ -305,6 +315,9 @@ Pointer to value containing the result of the call
 .RI "METACALL_API void * \fBmetacallfv_await_s\fP (void *func, void *args[], size_t size, void *(*resolve_callback)(void *, void *), void *(*reject_callback)(void *, void *), void *data)"
 .br
 .ti -1c
+.RI "METACALL_API void * \fBmetacallfv_await_struct_s\fP (void *func, void *args[], size_t size, metacall_await_callbacks cb, void *data)"
+.br
+.ti -1c
 .RI "METACALL_API void * \fBmetacallfmv_await\fP (void *func, void *keys[], void *values[], void *(*resolve_callback)(void *, void *), void *(*reject_callback)(void *, void *), void *data)"
 .br
 .ti -1c
@@ -397,6 +410,10 @@ Class reference, null if the class does not exist
 .SH "Macro Definition Documentation"
 .PP 
 .SS "#define METACALL_FLAGS_FORK_SAFE   0x01 << 0x00"
+
+.SH "Typedef Documentation"
+.PP 
+.SS "typedef void*(* metacall_await_callback) (void *, void *)"
 
 .SH "Function Documentation"
 .PP 
@@ -1205,6 +1222,30 @@ Value containing the result of the operation, it will be wrapped into a future l
 \fBParameters\fP
 .RS 4
 \fIreject_callback\fP Pointer to function that will be executed when task error (signature is identical as resolve_callback)
+.br
+\fIdata\fP Pointer to a context that will act as a closure for the chain
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Pointer to value containing the result of the call returned by @resolve_callback or @reject_callback wrapped in a future 
+.RE
+.PP
+
+.SS "METACALL_API void* metacallfv_await_struct_s (void * func, void * args[], size_t size, metacall_await_callbacks cb, void * data)"
+
+.PP
+Call an asynchronous function anonymously by value array @args and function @func (offered without function pointers for languages without support to function pointers) 
+.PP
+\fBParameters\fP
+.RS 4
+\fIfunc\fP Reference to function to be called
+.br
+\fIargs\fP Array of pointers to values
+.br
+\fIsize\fP Number of elements of the array @args
+.br
+\fIcb\fP Pointer to struct containing the function pointers to reject and resolve that will be executed when task completion or error
 .br
 \fIdata\fP Pointer to a context that will act as a closure for the chain
 .RE

@@ -19,11 +19,18 @@ Include dependency graph for metacall.\+h\+:
 \begin{DoxyCompactItemize}
 \item 
 struct \textbf{ metacall\+\_\+initialize\+\_\+configuration\+\_\+type}
+\item 
+struct \textbf{ metacall\+\_\+await\+\_\+callbacks\+\_\+type}
 \end{DoxyCompactItemize}
 \doxysubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
 \#define \textbf{ M\+E\+T\+A\+C\+A\+L\+L\+\_\+\+F\+L\+A\+G\+S\+\_\+\+F\+O\+R\+K\+\_\+\+S\+A\+FE}~0x01 $<$$<$ 0x00
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef void $\ast$($\ast$ \textbf{ metacall\+\_\+await\+\_\+callback}) (void $\ast$, void $\ast$)
 \end{DoxyCompactItemize}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
@@ -213,6 +220,8 @@ M\+E\+T\+A\+C\+A\+L\+L\+\_\+\+A\+PI void $\ast$ \textbf{ metacallfv\+\_\+await} 
 \item 
 M\+E\+T\+A\+C\+A\+L\+L\+\_\+\+A\+PI void $\ast$ \textbf{ metacallfv\+\_\+await\+\_\+s} (void $\ast$func, void $\ast$args[$\,$], size\+\_\+t size, void $\ast$($\ast$resolve\+\_\+callback)(void $\ast$, void $\ast$), void $\ast$($\ast$reject\+\_\+callback)(void $\ast$, void $\ast$), void $\ast$data)
 \item 
+M\+E\+T\+A\+C\+A\+L\+L\+\_\+\+A\+PI void $\ast$ \textbf{ metacallfv\+\_\+await\+\_\+struct\+\_\+s} (void $\ast$func, void $\ast$args[$\,$], size\+\_\+t size, metacall\+\_\+await\+\_\+callbacks cb, void $\ast$data)
+\item 
 M\+E\+T\+A\+C\+A\+L\+L\+\_\+\+A\+PI void $\ast$ \textbf{ metacallfmv\+\_\+await} (void $\ast$func, void $\ast$keys[$\,$], void $\ast$values[$\,$], void $\ast$($\ast$resolve\+\_\+callback)(void $\ast$, void $\ast$), void $\ast$($\ast$reject\+\_\+callback)(void $\ast$, void $\ast$), void $\ast$data)
 \item 
 M\+E\+T\+A\+C\+A\+L\+L\+\_\+\+A\+PI void $\ast$ \textbf{ metacallfmv\+\_\+await\+\_\+s} (void $\ast$func, void $\ast$keys[$\,$], void $\ast$values[$\,$], size\+\_\+t size, void $\ast$($\ast$resolve\+\_\+callback)(void $\ast$, void $\ast$), void $\ast$($\ast$reject\+\_\+callback)(void $\ast$, void $\ast$), void $\ast$data)
@@ -281,6 +290,15 @@ M\+E\+T\+A\+C\+A\+L\+L\+\_\+\+A\+PI void $\ast$ \textbf{ metacall\+\_\+null\+\_\
 \index{METACALL\_FLAGS\_FORK\_SAFE@{METACALL\_FLAGS\_FORK\_SAFE}!metacall.h@{metacall.h}}
 \doxysubsubsection{METACALL\_FLAGS\_FORK\_SAFE}
 {\footnotesize\ttfamily \#define M\+E\+T\+A\+C\+A\+L\+L\+\_\+\+F\+L\+A\+G\+S\+\_\+\+F\+O\+R\+K\+\_\+\+S\+A\+FE~0x01 $<$$<$ 0x00}
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\label{metacall_8h_aa9b6fcb756e3ac95f638f4a42bb8f5d4}} 
+\index{metacall.h@{metacall.h}!metacall\_await\_callback@{metacall\_await\_callback}}
+\index{metacall\_await\_callback@{metacall\_await\_callback}!metacall.h@{metacall.h}}
+\doxysubsubsection{metacall\_await\_callback}
+{\footnotesize\ttfamily typedef void$\ast$($\ast$ metacall\+\_\+await\+\_\+callback) (void $\ast$, void $\ast$)}
 
 
 
@@ -1193,6 +1211,32 @@ Value containing the result of the operation, it will be wrapped into a future l
 
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\texttt{ in}}  & {\em reject\+\_\+callback} & Pointer to function that will be executed when task error (signature is identical as resolve\+\_\+callback)\\
+\hline
+\mbox{\texttt{ in}}  & {\em data} & Pointer to a context that will act as a closure for the chain\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to value containing the result of the call returned by @resolve\+\_\+callback or @reject\+\_\+callback wrapped in a future 
+\end{DoxyReturn}
+\mbox{\label{metacall_8h_afe71978aefb3bb4d664ddf54b5ab81b7}} 
+\index{metacall.h@{metacall.h}!metacallfv\_await\_struct\_s@{metacallfv\_await\_struct\_s}}
+\index{metacallfv\_await\_struct\_s@{metacallfv\_await\_struct\_s}!metacall.h@{metacall.h}}
+\doxysubsubsection{metacallfv\_await\_struct\_s()}
+{\footnotesize\ttfamily M\+E\+T\+A\+C\+A\+L\+L\+\_\+\+A\+PI void$\ast$ metacallfv\+\_\+await\+\_\+struct\+\_\+s (\begin{DoxyParamCaption}\item[{void $\ast$}]{func,  }\item[{void $\ast$}]{args[$\,$],  }\item[{size\+\_\+t}]{size,  }\item[{metacall\+\_\+await\+\_\+callbacks}]{cb,  }\item[{void $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Call an asynchronous function anonymously by value array @args and function @func (offered without function pointers for languages without support to function pointers) 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em func} & Reference to function to be called\\
+\hline
+\mbox{\texttt{ in}}  & {\em args} & Array of pointers to values\\
+\hline
+\mbox{\texttt{ in}}  & {\em size} & Number of elements of the array @args\\
+\hline
+\mbox{\texttt{ in}}  & {\em cb} & Pointer to struct containing the function pointers to reject and resolve that will be executed when task completion or error\\
 \hline
 \mbox{\texttt{ in}}  & {\em data} & Pointer to a context that will act as a closure for the chain\\
 \hline

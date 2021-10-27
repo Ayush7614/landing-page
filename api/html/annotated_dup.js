@@ -49,6 +49,7 @@ var annotated_dup =
     [ "log_record_va_list_type", "structlog__record__va__list__type.html", "structlog__record__va__list__type" ],
     [ "metacall_allocator_nginx", "structmetacall__allocator__nginx__type.html", "structmetacall__allocator__nginx__type" ],
     [ "metacall_allocator_std", "structmetacall__allocator__std__type.html", "structmetacall__allocator__std__type" ],
+    [ "metacall_await_callbacks_type", "structmetacall__await__callbacks__type.html", "structmetacall__await__callbacks__type" ],
     [ "metacall_initialize_configuration_type", "structmetacall__initialize__configuration__type.html", "structmetacall__initialize__configuration__type" ],
     [ "metacall_log_custom", "structmetacall__log__custom__type.html", "structmetacall__log__custom__type" ],
     [ "metacall_log_custom_va_list", "structmetacall__log__custom__va__list__type.html", "structmetacall__log__custom__va__list__type" ],

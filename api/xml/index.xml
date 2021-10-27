@@ -242,6 +242,10 @@
     <member refid="structmetacall__allocator__std__type_1a5f42433a20d6179daef49874e45add39" kind="variable"><name>realloc</name></member>
     <member refid="structmetacall__allocator__std__type_1aa4ba7f4a95d0bd4f3c04da40489c6d3d" kind="variable"><name>free</name></member>
   </compound>
+  <compound refid="structmetacall__await__callbacks__type" kind="struct"><name>metacall_await_callbacks_type</name>
+    <member refid="structmetacall__await__callbacks__type_1ae99599c2bf0ed9c286a257bd82dffb6e" kind="variable"><name>resolve</name></member>
+    <member refid="structmetacall__await__callbacks__type_1a7caf6414e572e35463704b55ea944f2e" kind="variable"><name>reject</name></member>
+  </compound>
   <compound refid="structmetacall__initialize__configuration__type" kind="struct"><name>metacall_initialize_configuration_type</name>
     <member refid="structmetacall__initialize__configuration__type_1a680492994486c2bf741d104c3a05a4f1" kind="variable"><name>tag</name></member>
     <member refid="structmetacall__initialize__configuration__type_1a9a1547a3170d9ae70f300f0488e8bae0" kind="variable"><name>options</name></member>
@@ -1075,6 +1079,7 @@
     <member refid="metacall_8h_1a698f9b1a031af836302d2634e3194f75" kind="function"><name>metacall_await_s</name></member>
     <member refid="metacall_8h_1a4aae2677499d7bc7992840e90d754d83" kind="function"><name>metacallfv_await</name></member>
     <member refid="metacall_8h_1a9c5ead1f1aa559e58a65f69ae51972cb" kind="function"><name>metacallfv_await_s</name></member>
+    <member refid="metacall_8h_1afe71978aefb3bb4d664ddf54b5ab81b7" kind="function"><name>metacallfv_await_struct_s</name></member>
     <member refid="metacall_8h_1a806b1dda95f596de33a9527123fed8e4" kind="function"><name>metacallfmv_await</name></member>
     <member refid="metacall_8h_1a4c8d0fa0f6b7c3607bd92524a11f3c5c" kind="function"><name>metacallfmv_await_s</name></member>
     <member refid="metacall_8h_1addd2e38b4966b41bc2473c172d52147d" kind="function"><name>metacallfs_await</name></member>
@@ -1096,6 +1101,7 @@
     <member refid="metacall_8h_1aca8745a9f261bc3d37ee9156b991296f" kind="function"><name>metacall_destroy</name></member>
     <member refid="metacall_8h_1a1e8b06591a5564cfa4f1209e84ad5e78" kind="function"><name>metacall_print_info</name></member>
     <member refid="metacall_8h_1a9c8f9f1a02aa8b7f11203f473ad45a0c" kind="define"><name>METACALL_FLAGS_FORK_SAFE</name></member>
+    <member refid="metacall_8h_1aa9b6fcb756e3ac95f638f4a42bb8f5d4" kind="typedef"><name>metacall_await_callback</name></member>
     <member refid="metacall_8h_1ad50602b5115964e06b18483807ba1e11" kind="variable"><name>metacall_null_args</name></member>
     <member refid="metacall_8h_1a4aa530f2d57ee74faec5152ab59cfd2c" kind="function"><name>metacall_serial</name></member>
     <member refid="metacall_8h_1a7359cf8608ee329433d129f74621f6b7" kind="function"><name>metacall_log_null</name></member>

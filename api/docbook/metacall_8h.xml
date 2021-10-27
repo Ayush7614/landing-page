@@ -23,12 +23,21 @@
         <itemizedlist>
             <listitem><para>struct <link linkend="_structmetacall__initialize__configuration__type">metacall_initialize_configuration_type</link></para>
 </listitem>
+            <listitem><para>struct <link linkend="_structmetacall__await__callbacks__type">metacall_await_callbacks_type</link></para>
+</listitem>
         </itemizedlist>
 </simplesect>
 <simplesect>
     <title>Macros    </title>
         <itemizedlist>
             <listitem><para>#define <link linkend="_metacall_8h_1a9c8f9f1a02aa8b7f11203f473ad45a0c">METACALL_FLAGS_FORK_SAFE</link>   0x01 &lt;&lt; 0x00</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Typedefs    </title>
+        <itemizedlist>
+            <listitem><para>typedef void *(* <link linkend="_metacall_8h_1aa9b6fcb756e3ac95f638f4a42bb8f5d4">metacall_await_callback</link>) (void *, void *)</para>
 </listitem>
         </itemizedlist>
 </simplesect>
@@ -369,6 +378,8 @@ Parameters                    </title>
 </listitem>
             <listitem><para>METACALL_API void * <link linkend="_metacall_8h_1a9c5ead1f1aa559e58a65f69ae51972cb">metacallfv_await_s</link> (void *func, void *args[], size_t size, void *(*resolve_callback)(void *, void *), void *(*reject_callback)(void *, void *), void *data)</para>
 </listitem>
+            <listitem><para>METACALL_API void * <link linkend="_metacall_8h_1afe71978aefb3bb4d664ddf54b5ab81b7">metacallfv_await_struct_s</link> (void *func, void *args[], size_t size, metacall_await_callbacks cb, void *data)</para>
+</listitem>
             <listitem><para>METACALL_API void * <link linkend="_metacall_8h_1a806b1dda95f596de33a9527123fed8e4">metacallfmv_await</link> (void *func, void *keys[], void *values[], void *(*resolve_callback)(void *, void *), void *(*reject_callback)(void *, void *), void *data)</para>
 </listitem>
             <listitem><para>METACALL_API void * <link linkend="_metacall_8h_1a4c8d0fa0f6b7c3607bd92524a11f3c5c">metacallfmv_await_s</link> (void *func, void *keys[], void *values[], size_t size, void *(*resolve_callback)(void *, void *), void *(*reject_callback)(void *, void *), void *data)</para>
@@ -459,6 +470,14 @@ Parameters                    </title>
 <indexterm><primary>METACALL_FLAGS_FORK_SAFE</primary><secondary>metacall.h</secondary></indexterm>
 <indexterm><primary>metacall.h</primary><secondary>METACALL_FLAGS_FORK_SAFE</secondary></indexterm>
 <para><computeroutput>#define METACALL_FLAGS_FORK_SAFE   0x01 &lt;&lt; 0x00</computeroutput></para></section>
+</section>
+<section>
+<title>Typedef Documentation</title>
+<anchor xml:id="_metacall_8h_1aa9b6fcb756e3ac95f638f4a42bb8f5d4"/>    <section>
+    <title>metacall_await_callback</title>
+<indexterm><primary>metacall_await_callback</primary><secondary>metacall.h</secondary></indexterm>
+<indexterm><primary>metacall.h</primary><secondary>metacall_await_callback</secondary></indexterm>
+<para><computeroutput>typedef void*(* metacall_await_callback) (void *, void *)</computeroutput></para></section>
 </section>
 <section>
 <title>Function Documentation</title>
@@ -2364,6 +2383,66 @@ Parameters                    </title>
                                 <entry>in                                </entry>                                <entry>reject_callback</entry>
                                 <entry>
 <para>Pointer to function that will be executed when task error (signature is identical as resolve_callback)</para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>in                                </entry>                                <entry>data</entry>
+                                <entry>
+<para>Pointer to a context that will act as a closure for the chain</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>Pointer to value containing the result of the call returned by @resolve_callback or @reject_callback wrapped in a future </para>
+</formalpara>
+</para>
+    </section><anchor xml:id="_metacall_8h_1afe71978aefb3bb4d664ddf54b5ab81b7"/>    <section>
+    <title>metacallfv_await_struct_s()</title>
+<indexterm><primary>metacallfv_await_struct_s</primary><secondary>metacall.h</secondary></indexterm>
+<indexterm><primary>metacall.h</primary><secondary>metacallfv_await_struct_s</secondary></indexterm>
+<para><computeroutput>METACALL_API void* metacallfv_await_struct_s (void * func, void * args[], size_t size, metacall_await_callbacks cb, void * data)</computeroutput></para><para>
+
+<para>Call an asynchronous function anonymously by value array @args and function @func (offered without function pointers for languages without support to function pointers) </para>
+</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters                    </title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>in                                </entry>                                <entry>func</entry>
+                                <entry>
+<para>Reference to function to be called</para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>in                                </entry>                                <entry>args</entry>
+                                <entry>
+<para>Array of pointers to values</para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>in                                </entry>                                <entry>size</entry>
+                                <entry>
+<para>Number of elements of the array @args</para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>in                                </entry>                                <entry>cb</entry>
+                                <entry>
+<para>Pointer to struct containing the function pointers to reject and resolve that will be executed when task completion or error</para>
 </entry>
                             </row>
                             <row>

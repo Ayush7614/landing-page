@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">MetaCall
-   &#160;<span id="projectnumber">0.1.0.50b1ed9f169d</span>
+   &#160;<span id="projectnumber">0.1.0.44b1ab3b98a6</span>
    </div>
    <div id="projectbrief">A library for providing inter-language foreign function interface calls</div>
   </td>
@@ -87,6 +87,7 @@ $(document).ready(function(){initNavTree('metacall_8h.html',''); initResizable()
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#define-members">Macros</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
@@ -126,11 +127,18 @@ $(document).ready(function(){initNavTree('metacall_8h.html',''); initResizable()
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmetacall__initialize__configuration__type.html">metacall_initialize_configuration_type</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmetacall__await__callbacks__type.html">metacall_await_callbacks_type</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:a9c8f9f1a02aa8b7f11203f473ad45a0c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="metacall_8h.html#a9c8f9f1a02aa8b7f11203f473ad45a0c">METACALL_FLAGS_FORK_SAFE</a>&#160;&#160;&#160;0x01 &lt;&lt; 0x00</td></tr>
 <tr class="separator:a9c8f9f1a02aa8b7f11203f473ad45a0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:aa9b6fcb756e3ac95f638f4a42bb8f5d4"><td class="memItemLeft" align="right" valign="top">typedef void *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="metacall_8h.html#aa9b6fcb756e3ac95f638f4a42bb8f5d4">metacall_await_callback</a>) (void *, void *)</td></tr>
+<tr class="separator:aa9b6fcb756e3ac95f638f4a42bb8f5d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -288,6 +296,8 @@ Functions</h2></td></tr>
 <tr class="separator:a4aae2677499d7bc7992840e90d754d83"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9c5ead1f1aa559e58a65f69ae51972cb"><td class="memItemLeft" align="right" valign="top">METACALL_API void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="metacall_8h.html#a9c5ead1f1aa559e58a65f69ae51972cb">metacallfv_await_s</a> (void *func, void *args[], size_t size, void *(*resolve_callback)(void *, void *), void *(*reject_callback)(void *, void *), void *data)</td></tr>
 <tr class="separator:a9c5ead1f1aa559e58a65f69ae51972cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe71978aefb3bb4d664ddf54b5ab81b7"><td class="memItemLeft" align="right" valign="top">METACALL_API void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="metacall_8h.html#afe71978aefb3bb4d664ddf54b5ab81b7">metacallfv_await_struct_s</a> (void *func, void *args[], size_t size, metacall_await_callbacks cb, void *data)</td></tr>
+<tr class="separator:afe71978aefb3bb4d664ddf54b5ab81b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a806b1dda95f596de33a9527123fed8e4"><td class="memItemLeft" align="right" valign="top">METACALL_API void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="metacall_8h.html#a806b1dda95f596de33a9527123fed8e4">metacallfmv_await</a> (void *func, void *keys[], void *values[], void *(*resolve_callback)(void *, void *), void *(*reject_callback)(void *, void *), void *data)</td></tr>
 <tr class="separator:a806b1dda95f596de33a9527123fed8e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4c8d0fa0f6b7c3607bd92524a11f3c5c"><td class="memItemLeft" align="right" valign="top">METACALL_API void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="metacall_8h.html#a4c8d0fa0f6b7c3607bd92524a11f3c5c">metacallfmv_await_s</a> (void *func, void *keys[], void *values[], size_t size, void *(*resolve_callback)(void *, void *), void *(*reject_callback)(void *, void *), void *data)</td></tr>
@@ -353,6 +363,21 @@ Variables</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">#define METACALL_FLAGS_FORK_SAFE&#160;&#160;&#160;0x01 &lt;&lt; 0x00</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a id="aa9b6fcb756e3ac95f638f4a42bb8f5d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9b6fcb756e3ac95f638f4a42bb8f5d4">&#9670;&nbsp;</a></span>metacall_await_callback</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef void*(* metacall_await_callback) (void *, void *)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2240,6 +2265,65 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="afe71978aefb3bb4d664ddf54b5ab81b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe71978aefb3bb4d664ddf54b5ab81b7">&#9670;&nbsp;</a></span>metacallfv_await_struct_s()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">METACALL_API void* metacallfv_await_struct_s </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>func</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>args</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">metacall_await_callbacks&#160;</td>
+          <td class="paramname"><em>cb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Call an asynchronous function anonymously by value array @args and function @func (offered without function pointers for languages without support to function pointers) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">func</td><td>Reference to function to be called</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">args</td><td>Array of pointers to values</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>Number of elements of the array @args</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">cb</td><td>Pointer to struct containing the function pointers to reject and resolve that will be executed when task completion or error</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>Pointer to a context that will act as a closure for the chain</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to value containing the result of the call returned by @resolve_callback or @reject_callback wrapped in a future </dd></dl>
+
+</div>
+</div>
 <a id="a806b1dda95f596de33a9527123fed8e4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a806b1dda95f596de33a9527123fed8e4">&#9670;&nbsp;</a></span>metacallfmv_await()</h2>
 
@@ -3247,7 +3331,7 @@ Variables</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_e44cd7e635bb763401c0caf0a476eb95.html">metacall</a></li><li class="navelem"><a class="el" href="dir_862189cd8eef5d16f2384f5f677984a6.html">include</a></li><li class="navelem"><a class="el" href="dir_89c17dc2999f746bfb4b59fe5ba3359a.html">metacall</a></li><li class="navelem"><a class="el" href="metacall_8h.html">metacall.h</a></li>
-    <li class="footer">Generated on Mon Oct 18 2021 15:02:47 for MetaCall by
+    <li class="footer">Generated on Wed Oct 27 2021 14:58:37 for MetaCall by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
   </ul>

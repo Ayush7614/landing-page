@@ -54,6 +54,7 @@
     <xi:include href="structlog__record__va__list__type.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
     <xi:include href="structmetacall__allocator__nginx__type.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
     <xi:include href="structmetacall__allocator__std__type.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="structmetacall__await__callbacks__type.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
     <xi:include href="structmetacall__initialize__configuration__type.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
     <xi:include href="structmetacall__log__custom__type.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
     <xi:include href="structmetacall__log__custom__va__list__type.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>

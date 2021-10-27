@@ -1,5 +1,7 @@
 var NAVTREEINDEX9 =
 {
+"reflect__type__id_8h.html#aac3b36ca5262794cb8accfef6a2bcaaeafeec3d92b10ebeaa68bbb56e4d08691c":[1,0,124,1,18],
+"reflect__type__id_8h.html#ab280e1aba12fab895a28ac1ac6b81c9d":[1,0,124,4],
 "reflect__type__id_8h.html#ac5a3619e7125685a5f902bd96de1f119":[1,0,124,10],
 "reflect__type__id_8h.html#aca0570987b53ecfdf6b0377d4ea7059c":[1,0,124,7],
 "reflect__type__id_8h.html#ae3bed631492421ecc855b2c18aab5ebe":[1,0,124,5],
@@ -247,7 +249,5 @@ var NAVTREEINDEX9 =
 "structlog__policy__schedule__impl__type.html#ac9e28c78a9e909c587b935c5e246b5f7":[0,0,35,0],
 "structlog__policy__storage__batch__ctor__type.html":[0,0,36],
 "structlog__policy__storage__batch__ctor__type.html#a99a46056b6c81cb859c6ac2d67d9ba21":[0,0,36,0],
-"structlog__policy__storage__impl__type.html":[0,0,37],
-"structlog__policy__storage__impl__type.html#a424797be9f09646d3ffa741e7e6856ef":[0,0,37,0],
-"structlog__policy__storage__impl__type.html#a55f1d3a18dd2f56f5fad001a9e9d2d48":[0,0,37,1]
+"structlog__policy__storage__impl__type.html":[0,0,37]
 };

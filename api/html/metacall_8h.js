@@ -1,7 +1,9 @@
 var metacall_8h =
 [
     [ "metacall_initialize_configuration_type", "structmetacall__initialize__configuration__type.html", "structmetacall__initialize__configuration__type" ],
+    [ "metacall_await_callbacks_type", "structmetacall__await__callbacks__type.html", "structmetacall__await__callbacks__type" ],
     [ "METACALL_FLAGS_FORK_SAFE", "metacall_8h.html#a9c8f9f1a02aa8b7f11203f473ad45a0c", null ],
+    [ "metacall_await_callback", "metacall_8h.html#aa9b6fcb756e3ac95f638f4a42bb8f5d4", null ],
     [ "metacall_serial", "metacall_8h.html#a4aa530f2d57ee74faec5152ab59cfd2c", null ],
     [ "metacall_log_null", "metacall_8h.html#a7359cf8608ee329433d129f74621f6b7", null ],
     [ "metacall_flags", "metacall_8h.html#a59ae3eea97bc40256b292aea7f36b61c", null ],
@@ -48,6 +50,7 @@ var metacall_8h =
     [ "metacall_await_s", "metacall_8h.html#a698f9b1a031af836302d2634e3194f75", null ],
     [ "metacallfv_await", "metacall_8h.html#a4aae2677499d7bc7992840e90d754d83", null ],
     [ "metacallfv_await_s", "metacall_8h.html#a9c5ead1f1aa559e58a65f69ae51972cb", null ],
+    [ "metacallfv_await_struct_s", "metacall_8h.html#afe71978aefb3bb4d664ddf54b5ab81b7", null ],
     [ "metacallfmv_await", "metacall_8h.html#a806b1dda95f596de33a9527123fed8e4", null ],
     [ "metacallfmv_await_s", "metacall_8h.html#a4c8d0fa0f6b7c3607bd92524a11f3c5c", null ],
     [ "metacallfs_await", "metacall_8h.html#addd2e38b4966b41bc2473c172d52147d", null ],
